@@ -1,759 +1,155 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>斗罗大陆文字版游戏 v3.1 · 辣椒油隐藏彩蛋版</title>
-  <style>
-    :root{
-      --bg:#080b14;--bg2:#111827;--card:#151b2e;--card2:#1d263d;--soft:#26324d;
-      --text:#f8fafc;--muted:#a9b4cc;--line:rgba(255,255,255,.1);--gold:#f8d67a;--blue:#86d6ff;--green:#8ef0b2;--red:#ff7f95;--purple:#c7a4ff;
-      --shadow:0 18px 50px rgba(0,0,0,.35);--radius:22px;--safe-bottom:env(safe-area-inset-bottom,0px);
-    }
-    *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:radial-gradient(circle at top,#17203a 0,#080b14 48%,#05070d 100%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}button,input,textarea,select{font:inherit}button{border:0;cursor:pointer;color:inherit}a{color:inherit}.hidden{display:none!important}
-    .page{min-height:100vh;padding:18px 16px calc(92px + var(--safe-bottom));max-width:900px;margin:0 auto}.home{display:grid;place-items:center;min-height:100vh;padding:28px 18px}.home-card{width:min(560px,100%);background:linear-gradient(180deg,rgba(30,41,70,.94),rgba(13,18,32,.96));border:1px solid var(--line);border-radius:32px;box-shadow:var(--shadow);padding:28px;position:relative;overflow:hidden}.home-card:before{content:"";position:absolute;inset:-80px -80px auto auto;width:220px;height:220px;border-radius:50%;background:rgba(248,214,122,.12);filter:blur(8px)}.logo{font-size:30px;font-weight:900;letter-spacing:.04em}.version{display:inline-flex;margin:10px 0 18px;padding:6px 12px;border:1px solid rgba(248,214,122,.35);border-radius:999px;color:var(--gold);background:rgba(248,214,122,.08);font-size:13px}.home-desc{color:var(--muted);line-height:1.75;margin:0 0 22px}.home-actions{display:grid;gap:12px}.primary,.secondary,.ghost,.danger{border-radius:18px;padding:15px 16px;font-weight:800;letter-spacing:.02em;transition:.16s transform,.16s opacity,.16s background}.primary{background:linear-gradient(135deg,#f7c65f,#b9792a);color:#1c1206;box-shadow:0 12px 28px rgba(247,198,95,.2)}.secondary{background:rgba(134,214,255,.12);border:1px solid rgba(134,214,255,.22)}.ghost{background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--muted)}.danger{background:rgba(255,127,149,.12);border:1px solid rgba(255,127,149,.25);color:#ffd7de}.primary:active,.secondary:active,.ghost:active,.danger:active{transform:scale(.985)}
-    .topbar{position:sticky;top:0;z-index:20;margin:-18px -16px 14px;padding:12px 16px;background:linear-gradient(180deg,rgba(8,11,20,.96),rgba(8,11,20,.72));backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.06)}.player-strip{display:flex;align-items:center;gap:12px}.avatar{width:46px;height:46px;border-radius:16px;background:linear-gradient(135deg,#f8d67a,#805ad5);display:grid;place-items:center;color:#1b1204;font-weight:900;box-shadow:0 8px 24px rgba(0,0,0,.3)}.player-main{flex:1;min-width:0}.player-name{font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.player-sub{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mini-bars{display:flex;gap:5px;margin-top:6px}.mini-bar{height:6px;flex:1;background:rgba(255,255,255,.09);border-radius:999px;overflow:hidden}.mini-bar span{display:block;height:100%;border-radius:inherit}.hp span{background:linear-gradient(90deg,#f9738a,#ffd1d8)}.sp span{background:linear-gradient(90deg,#60a5fa,#dbeafe)}
-    .card{background:linear-gradient(180deg,rgba(27,36,60,.94),rgba(16,22,38,.96));border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 12px 30px rgba(0,0,0,.25);padding:16px;margin:12px 0}.card.flat{box-shadow:none}.eyebrow{font-size:12px;color:var(--gold);font-weight:900;letter-spacing:.08em;text-transform:uppercase}.title{font-size:20px;font-weight:950;margin:6px 0 4px}.muted{color:var(--muted)}.small{font-size:13px}.row{display:flex;align-items:center;gap:10px}.between{justify-content:space-between}.grid{display:grid;gap:10px}.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid var(--line);font-size:12px;color:var(--muted)}.section-title{font-weight:900;margin:4px 0 10px}.story-text{font-size:18px;line-height:1.85;min-height:136px}.story-text p{margin:0 0 10px}.progress{height:9px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden}.progress span{display:block;height:100%;background:linear-gradient(90deg,#f8d67a,#86d6ff);border-radius:inherit}.main-action{position:sticky;bottom:78px;z-index:16;margin-top:16px}.main-action .primary{width:100%;font-size:18px;padding:18px}.choice-list{display:grid;gap:10px}.choice{width:100%;text-align:left;padding:14px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid var(--line)}.choice b{display:block;margin-bottom:4px}.log{max-height:220px;overflow:auto;display:grid;gap:8px}.log-line{padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.055);color:#dbe4ff;font-size:14px;line-height:1.55}.battle-arena{display:grid;gap:12px}.fighter{padding:14px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid var(--line)}.fighter.enemy{border-color:rgba(255,127,149,.25)}.bar{height:12px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;margin-top:8px}.bar span{display:block;height:100%;border-radius:inherit}.bar.hpbar span{background:linear-gradient(90deg,#fb7185,#fecdd3)}.bar.spbar span{background:linear-gradient(90deg,#38bdf8,#bfdbfe)}.battle-actions{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.battle-actions button{padding:15px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid var(--line);font-weight:850}.sheet{position:fixed;left:0;right:0;bottom:0;z-index:50;background:linear-gradient(180deg,#1a2338,#0c111e);border-top:1px solid var(--line);border-radius:24px 24px 0 0;box-shadow:0 -18px 50px rgba(0,0,0,.45);padding:16px 16px calc(18px + var(--safe-bottom));max-height:78vh;overflow:auto}.sheet-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.sheet-close{background:rgba(255,255,255,.08);border-radius:999px;padding:8px 12px;color:var(--muted)}.list{display:grid;gap:10px}.item{padding:13px;border-radius:17px;background:rgba(255,255,255,.06);border:1px solid var(--line)}.item-title{font-weight:900}.item-desc{color:var(--muted);font-size:13px;line-height:1.5;margin-top:4px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{background:rgba(255,255,255,.055);border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}.stat b{display:block;font-size:18px}.tab-page{display:none}.tab-page.active{display:block}.bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(8,11,20,.92);backdrop-filter:blur(18px);border-top:1px solid rgba(255,255,255,.08);padding:8px 10px calc(8px + var(--safe-bottom));display:none}.bottom-nav.show{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.navbtn{border-radius:16px;background:transparent;color:var(--muted);padding:8px 4px;font-size:12px}.navbtn span{display:block;font-size:20px;margin-bottom:2px}.navbtn.active{background:rgba(248,214,122,.12);color:var(--gold)}.accordion{border-radius:18px;border:1px solid var(--line);overflow:hidden;background:rgba(255,255,255,.045)}.accordion summary{list-style:none;padding:14px;font-weight:900}.accordion summary::-webkit-details-marker{display:none}.accordion-body{padding:0 14px 14px;color:var(--muted);line-height:1.7}.toast{position:fixed;left:50%;bottom:96px;z-index:90;transform:translateX(-50%);background:#f8d67a;color:#1b1204;padding:10px 14px;border-radius:999px;font-weight:900;box-shadow:0 12px 30px rgba(0,0,0,.35)}.fade-in{animation:fade .22s ease both}@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}.pulse{animation:pulse .5s ease}@keyframes pulse{50%{filter:brightness(1.35);transform:scale(1.01)}}
-    body.compact .card{padding:13px;margin:9px 0}body.compact .story-text{font-size:16px;min-height:96px}body.large-touch button{min-height:46px}@media(min-width:760px){.page{padding-bottom:100px}.battle-arena{grid-template-columns:1fr 1fr}.grid.desktop-three{grid-template-columns:repeat(3,1fr)}.main-action{bottom:88px}.home-card{padding:36px}.logo{font-size:38px}}
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>斗罗大陆文字版 RPG</title>
+<meta name="theme-color" content="#fbfbf8" />
+<style>
+:root{
+  --bg:#fbfbf8;--paper:#fffffc;--ink:#111;--muted:#666;--line:#111;--thin:#b8b8b0;--soft:#efefea;
+  --max:820px;--shadow:none;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{min-height:100%}
+body{
+  margin:0;color:var(--ink);background:var(--bg);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",Arial,sans-serif;
+  line-height:1.9;letter-spacing:.01em;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;
+  background:linear-gradient(90deg,rgba(17,17,17,.035) 1px,transparent 1px),linear-gradient(rgba(17,17,17,.025) 1px,transparent 1px);
+  background-size:28px 28px;
+}
+button,input{font:inherit}
+button{
+  border:1.5px solid var(--line);border-radius:0;padding:13px 16px;background:#fff;color:var(--ink);
+  font-weight:800;box-shadow:none;letter-spacing:.03em;min-height:48px;
+}
+button:active{transform:translateY(1px);background:#f3f3ee}
+button.primary{background:#111;color:#fff;border-color:#111}
+button.ghost{background:#fff;color:#111}
+input{width:100%;border:1.5px solid var(--line);background:#fff;color:var(--ink);padding:14px;border-radius:0;outline:0;min-height:48px}
+.home{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:18px}
+.hero{
+  width:min(var(--max),100%);padding:34px 26px;border:2px solid var(--line);background:var(--paper);box-shadow:none;position:relative;
+}
+.hero:before,.hero:after{content:"";position:absolute;left:14px;right:14px;height:1px;background:#111}.hero:before{top:14px}.hero:after{bottom:14px}
+.logo{font-size:34px;font-weight:950;letter-spacing:.12em;margin:0 0 8px;color:#111;line-height:1.25}.sub{color:var(--muted);font-size:14px;margin-bottom:20px}
+.app{max-width:var(--max);margin:0 auto;padding:12px 12px 92px;position:relative}
+.card{background:var(--paper);border:1.7px solid var(--line);border-radius:0;padding:20px;box-shadow:none;margin:12px 0;position:relative}
+.card:has(.chapterTitle){padding-top:22px}
+.topbar{position:sticky;top:0;z-index:5;padding:10px 0 4px;background:linear-gradient(180deg,var(--bg) 78%,rgba(251,251,248,0))}
+.status{display:flex;gap:12px;justify-content:space-between;align-items:center;background:var(--paper);border:1.7px solid var(--line);padding:12px}
+.name{font-weight:950;color:#111;letter-spacing:.04em}.meta,.small{font-size:13px;color:var(--muted)}
+.bars{display:flex;gap:7px;margin-top:8px}.bar{height:8px;width:112px;background:#fff;border:1.2px solid var(--line);border-radius:0;overflow:hidden}.bar i{display:block;height:100%;background:#111}.bar.sp i{background:#555}
+.chapterTitle{font-size:25px;font-weight:950;color:#111;line-height:1.42;letter-spacing:.03em}.chapterTitle small{display:block;color:var(--muted);font-size:13px;font-weight:700;margin-top:4px;letter-spacing:.04em}
+.chapterMeta,.row,.readerLine{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.mini,.tag{display:inline-block;padding:3px 8px;border-radius:0;background:#fff;border:1px solid #111;color:#111;font-size:12px;line-height:1.5}
+.progressLine{height:8px;background:#fff;border:1px solid var(--line);border-radius:0;overflow:hidden;margin:14px 0}.progressLine i{height:100%;display:block;background:#111}
+.goal{padding:11px 12px;border:1.5px solid var(--line);background:#fafaf6;color:#111;font-size:14px;margin:10px 0}.goal:before{content:"当前目标｜";font-weight:900}
+.sceneTitle{font-weight:950;color:#111;letter-spacing:.12em;margin:14px 0 10px;border-bottom:1px solid #111;padding-bottom:6px}
+.epigraph{border-left:4px solid var(--line);padding:12px 14px;background:#fafaf6;color:#111;font-family:"Songti SC","Noto Serif CJK SC",Georgia,"Times New Roman",serif;font-size:18px;line-height:1.9}
+.novel{padding:4px 0}.novel p{margin:14px 0;font-size:16.5px;text-align:justify;font-family:"Songti SC","Noto Serif CJK SC","PingFang SC",serif;line-height:2.05}.novel p.key{font-size:17.2px;color:#111;font-weight:800}.novel p.whisper{color:#555;font-family:"Songti SC","Noto Serif CJK SC",Georgia,"Times New Roman",serif}.novel .mark{color:#111;font-weight:900;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.dialogue{margin-top:14px;padding:13px 14px;border:1.5px solid var(--line);background:#fff}.dialogue b{color:#111}.dialogue:before{content:"对白";display:block;font-size:12px;font-weight:900;letter-spacing:.16em;margin-bottom:4px;color:#555}
+.aside{margin-top:12px;padding:12px 13px;border:1px dashed var(--line);background:#fafaf6;color:#333}.aside:before{content:"旁白";font-size:12px;font-weight:900;letter-spacing:.16em;margin-right:8px;color:#555}
+.choiceList{display:grid;gap:10px;margin-top:14px}.choice{text-align:left;width:100%;line-height:1.7;padding:14px 15px}.choice b{color:#111;font-size:16px}.choice:hover{background:#f6f6f1}.impactText{display:block;margin-top:5px;color:#666;font-size:12px;font-weight:600}.result{padding:12px;border:1.5px solid var(--line);background:#fafaf6;color:#111;margin:10px 0}.pulse{margin:12px 0;padding:12px;border:1px solid var(--line);background:#fff}.consequence{display:grid;gap:6px;margin-top:8px}.impact{font-size:13px;color:#555}.statGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.stat{padding:12px;border:1px solid var(--line);background:#fff}.stat b{letter-spacing:.04em}.sep{height:1px;background:#111;margin:16px 0}.cleanList{padding-left:20px;color:#111}
+.nav{position:fixed;left:0;right:0;bottom:0;display:none;justify-content:center;gap:0;padding:0 calc(8px + env(safe-area-inset-right)) env(safe-area-inset-bottom) calc(8px + env(safe-area-inset-left));background:#fff;border-top:2px solid var(--line);z-index:10}.nav button{min-width:72px;padding:12px 7px;font-size:13px;border-radius:0;border-width:0 1px 0 0;min-height:54px}.nav button:first-child{border-left:1px solid #111}.nav button.active{background:#111;color:#fff}.footerSpace{height:20px}.routeMeter{height:7px;background:#fff;border:1px solid var(--line);border-radius:0;overflow:hidden;margin-top:6px}.routeMeter i{display:block;height:100%;background:#111}
+@media(max-width:620px){body{line-height:1.82}.app{padding:8px 8px 88px}.card{padding:16px}.hero{padding:30px 20px}.logo{font-size:27px}.chapterTitle{font-size:21px}.novel p{font-size:16px;line-height:2.02}.statGrid{grid-template-columns:1fr}.bar{width:88px}.nav button{min-width:0;flex:1;font-size:12.5px}.topbar{top:0}.status{align-items:flex-start}.status button{padding:10px 11px;min-height:42px}.sceneTitle{letter-spacing:.08em}}
+</style>
 </head>
-<body class="large-touch">
-  <main id="home" class="home">
-    <section class="home-card fade-in">
-      <div class="logo">斗罗大陆文字版 RPG</div>
-      <div class="version">v3.0 · 体验重构版</div>
-      <p class="home-desc">这版把旧版本的复杂入口全部收纳起来。首页只保留三个按钮，游戏中只围绕一个主流程推进：看剧情、做选择、打战斗、继续正史。</p>
-      <div class="grid" style="margin:0 0 12px">
-        <label class="small muted" for="heroNameInput">角色名，可不填</label>
-        <input id="heroNameInput" maxlength="12" placeholder="不填则随机生成名字" style="width:100%;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--text);padding:14px 15px;outline:none" />
-      </div>
-      <div class="home-actions">
-        <button class="primary" onclick="smartStart()">继续游戏</button>
-        <button class="secondary" onclick="newAwakening((document.getElementById('heroNameInput')||{}).value||'')">新的觉醒</button>
-        <button class="ghost" onclick="openSettingsFromHome()">设置</button>
-      </div>
-      <p class="small muted" style="margin-top:16px">本作是同人文字游戏原型。v3.1 保持体验重构，并加入一个仅角色名触发的隐藏彩蛋。</p>
-    </section>
-  </main>
-
-  <main id="app" class="page hidden">
-    <header class="topbar">
-      <div class="player-strip">
-        <div class="avatar" id="avatar">魂</div>
-        <div class="player-main">
-          <div class="player-name" id="playerName">未觉醒</div>
-          <div class="player-sub" id="playerSub">点击继续开始新的觉醒</div>
-          <div class="mini-bars"><div class="mini-bar hp"><span id="topHp" style="width:100%"></span></div><div class="mini-bar sp"><span id="topSp" style="width:100%"></span></div></div>
-        </div>
-        <button class="ghost" style="padding:9px 12px;border-radius:14px" onclick="saveGame(true)">存档</button>
-      </div>
-    </header>
-
-    <section id="tab-main" class="tab-page active"></section>
-    <section id="tab-role" class="tab-page"></section>
-    <section id="tab-team" class="tab-page"></section>
-    <section id="tab-bag" class="tab-page"></section>
-    <section id="tab-more" class="tab-page"></section>
-  </main>
-
-  <nav id="bottomNav" class="bottom-nav">
-    <button class="navbtn active" data-tab="main" onclick="switchTab('main')"><span>📖</span>主线</button>
-    <button class="navbtn" data-tab="role" onclick="switchTab('role')"><span>🧬</span>角色</button>
-    <button class="navbtn" data-tab="team" onclick="switchTab('team')"><span>👥</span>队伍</button>
-    <button class="navbtn" data-tab="bag" onclick="switchTab('bag')"><span>🎒</span>背包</button>
-    <button class="navbtn" data-tab="more" onclick="switchTab('more')"><span>☰</span>更多</button>
-  </nav>
-  <div id="sheet" class="sheet hidden"></div>
-  <div id="toast" class="toast hidden"></div>
-
-  <script>
-    const VERSION='3.1';
-    const SAVE_KEY='douluo_text_rpg_v3_save';
-    const CHAPTER_TITLES = [
-  "第1章：武魂觉醒",
-  "第2章：村口冲突",
-  "第3章：第一场胜利",
-  "第4章：离村之日",
-  "第5章：索托城",
-  "第6章：大斗魂场首战",
-  "第7章：史莱克学院门前",
-  "第8章：赵无极压力考核",
-  "第9章：怪物入学",
-  "卷二·第10章：赶往索托",
-  "卷二·第11章：夜宿小镇",
-  "卷二·第12章：斗魂场的门票",
-  "卷二·第13章：第一枚队友线索",
-  "卷二·第14章：史莱克路标",
-  "卷二·第15章：入学初试",
-  "卷二·第16章：赵无极考核余波",
-  "卷三·第17章：破旧学院",
-  "卷三·第18章：新生宿舍",
-  "卷三·第19章：怪物们第一次见面",
-  "卷三·第20章：弗兰德第一堂课",
-  "卷三·第21章：大师武魂理论",
-  "卷三·第22章：赵无极抗压训练",
-  "卷三·第23章：七怪候选排名",
-  "卷三·第24章：第一次团队训练",
-  "卷三·第25章：内部矛盾",
-  "卷三·第26章：七怪正式成立",
-  "卷四·第27章：七怪第一次集合",
-  "卷四·第28章：斗魂场注册",
-  "卷四·第29章：第一场七人团战",
-  "卷四·第30章：战术磨合",
-  "卷四·第31章：连胜之始",
-  "卷四·第32章：队友支线开启",
-  "卷四·第33章：强敌战队登场",
-  "卷四·第34章：组合技突破",
-  "卷四·第35章：十连胜之夜",
-  "卷四·第36章：扬名索托城",
-  "卷五·第37章：十连胜后的代价",
-  "卷五·第38章：大师的极限训练",
-  "卷五·第39章：全大陆精英魂师大赛",
-  "卷五·第40章：武魂殿黄金一代",
-  "卷五·第41章：第二魂环与第三魂环规划",
-  "卷五·第42章：再入魂兽森林",
-  "卷五·第43章：队友个人支线深入",
-  "卷五·第44章：七怪分组特训",
-  "卷五·第45章：组合技进阶",
-  "卷五·第46章：大赛邀请",
-  "卷六·第47章：天斗赛区",
-  "卷六·第48章：开幕式",
-  "卷六·第49章：第一场预选赛",
-  "卷六·第50章：贵族学院的轻视",
-  "卷六·第51章：史莱克首胜",
-  "卷六·第52章：元素学院登场",
-  "卷六·第53章：连续预选战",
-  "卷六·第54章：被针对的一战",
-  "卷六·第55章：预选赛关键战",
-  "卷六·第56章：史莱克出线",
-  "卷七·第57章：晋级赛规则",
-  "卷七·第58章：强队名单",
-  "卷七·第59章：天水学院之战",
-  "卷七·第60章：炽火学院之战",
-  "卷七·第61章：神风学院之战",
-  "卷七·第62章：雷霆学院之战",
-  "卷七·第63章：队友支线爆发",
-  "卷七·第64章：史莱克底牌暴露",
-  "卷七·第65章：晋级赛最终战",
-  "卷七·第66章：前往总决赛",
-  "卷八·第67章：抵达武魂城",
-  "卷八·第68章：总决赛队伍集结",
-  "卷八·第69章：武魂殿的压迫",
-  "卷八·第70章：黄金一代初见",
-  "卷八·第71章：胡列娜的试探",
-  "卷八·第72章：邪月的战意",
-  "卷八·第73章：焱的挑衅",
-  "卷八·第74章：大师的最终战术课",
-  "卷八·第75章：七怪最后一夜",
-  "卷八·第76章：总决赛开幕",
-  "卷九·第77章：黄金一代登场",
-  "卷九·第78章：第一轮交锋",
-  "卷九·第79章：胡列娜的精神领域",
-  "卷九·第80章：焱的火土压制",
-  "卷九·第81章：邪月破阵",
-  "卷九·第82章：武魂融合技",
-  "卷九·第83章：七怪濒临崩盘",
-  "卷九·第84章：玩家关键选择",
-  "卷九·第85章：史莱克最终组合技",
-  "卷九·第86章：黄金决战落幕",
-  "卷十·第87章：大赛之后",
-  "卷十·第88章：武魂殿的目光",
-  "卷十·第89章：宗门邀请",
-  "卷十·第90章：帝国与贵族",
-  "卷十·第91章：七怪各自的选择",
-  "卷十·第92章：暗流涌动",
-  "卷十·第93章：大师的新目标",
-  "卷十·第94章：三年之约",
-  "卷十·第95章：暂别史莱克",
-  "卷十·第96章：各自成长线开启",
-  "卷十一·第97章：新的道路",
-  "卷十一·第98章：第一年修炼",
-  "卷十一·第99章：势力初入",
-  "卷十一·第100章：第一次危机",
-  "卷十一·第101章：远方来信",
-  "卷十一·第102章：第二年突破",
-  "卷十一·第103章：队友求援",
-  "卷十一·第104章：武魂进化契机",
-  "卷十一·第105章：第三年归途",
-  "卷十一·第106章：史莱克重聚",
-  "卷十二·第107章：三年后的七怪",
-  "卷十二·第108章：成长结算",
-  "卷十二·第109章：重聚切磋",
-  "卷十二·第110章：迟到的队友",
-  "卷十二·第111章：七怪新阵容",
-  "卷十二·第112章：重建组合技",
-  "卷十二·第113章：武魂殿追查",
-  "卷十二·第114章：大陆势力来访",
-  "卷十二·第115章：新的敌人",
-  "卷十二·第116章：七怪再出发",
-  "卷十三·第117章：雨夜挑战",
-  "卷十三·第118章：黑暗版七怪",
-  "卷十三·第119章：星陨枪试探",
-  "卷十三·第120章：无相面具",
-  "卷十三·第121章：罗刹音污染",
-  "卷十三·第122章：七怪新组合技首战",
-  "卷十三·第123章：逆星撤退",
-  "卷十三·第124章：神秘邀请函",
-  "卷十三·第125章：禁忌魂师计划",
-  "卷十三·第126章：追踪逆星",
-  "卷十四·第127章：倒悬星纹",
-  "卷十四·第128章：黑市魂导器商人",
-  "卷十四·第129章：幸存实验体",
-  "卷十四·第130章：武魂殿禁档",
-  "卷十四·第131章：逆星七子的过去",
-  "卷十四·第132章：星陨的选择",
-  "卷十四·第133章：无面的真脸",
-  "卷十四·第134章：罗刹音的记忆",
-  "卷十四·第135章：深渊实验场",
-  "卷十四·第136章：史莱克的决定",
-  "卷十五·第137章：深渊三路开启",
-  "卷十五·第138章：逆星归途",
-  "卷十五·第139章：星纹烙印研究",
-  "卷十五·第140章：逆星残火",
-  "卷十五·第141章：星陨复仇",
-  "卷十五·第142章：实验体救援",
-  "卷十五·第143章：第二实验场",
-  "卷十五·第144章：星纹烙印解除",
-  "卷十五·第145章：幕后组织现身",
-  "卷十五·第146章：深渊三路结算",
-  "卷十六·第147章：深渊星会据点",
-  "卷十六·第148章：武魂殿介入",
-  "卷十六·第149章：七怪与逆星的关系",
-  "卷十六·第150章：编号十三的关键能力",
-  "卷十六·第151章：人造魂王军团",
-  "卷十六·第152章：星纹烙印扩散",
-  "卷十六·第153章：史莱克联盟成立",
-  "卷十六·第154章：深渊星会第一次正面战争",
-  "卷十七·第155章：联盟后的暗杀",
-  "卷十七·第156章：史莱克遭袭",
-  "卷十七·第157章：星纹炸弹",
-  "卷十七·第158章：观星者的第二代作品",
-  "卷十七·第159章：联盟内部背叛",
-  "卷十七·第160章：武魂殿接管危机",
-  "卷十七·第161章：编号十三被夺",
-  "卷十七·第162章：七怪追击",
-  "卷十七·第163章：星会使徒登场",
-  "卷十七·第164章：反击开始",
-  "卷十八·第165章：反击会议",
-  "卷十八·第166章：七怪分队",
-  "卷十八·第167章：星纹工坊",
-  "卷十八·第168章：镜鸦追踪",
-  "卷十八·第169章：骨灯诅咒",
-  "卷十八·第170章：星棘阵法城",
-  "卷十八·第171章：回光铃修复",
-  "卷十八·第172章：联盟肃清",
-  "卷十八·第173章：观星者的邀请",
-  "卷十八·第174章：反击战第一胜",
-  "卷十九·第175章：完成品",
-  "卷十九·第176章：星使初战",
-  "卷十九·第177章：自由与忠诚",
-  "卷十九·第178章：人造魂师的极限",
-  "卷十九·第179章：史莱克七怪被压制",
-  "卷十九·第180章：星使的自我",
-  "卷十九·第181章：编号十三的共鸣",
-  "卷十九·第182章：七怪新战术",
-  "卷十九·第183章：观星者的真正目标",
-  "卷十九·第184章：星使叛变或进化",
-  "卷二十·第185章：神性残响",
-  "卷二十·第186章：被盯上的玩家",
-  "卷二十·第187章：神级武魂档案",
-  "卷二十·第188章：观星者的过去",
-  "卷二十·第189章：星命轮碎片",
-  "卷二十·第190章：神性实验场",
-  "卷二十·第191章：七怪样本危机",
-  "卷二十·第192章：自由样本捕获计划",
-  "卷二十·第193章：史莱克联盟远征",
-  "卷二十·第194章：神性承载者",
-  "卷二十一·第195章：掌心的金纹",
-  "卷二十一·第196章：神性梦境",
-  "卷二十一·第197章：荒原污染",
-  "卷二十一·第198章：失控承载者",
-  "卷二十一·第199章：武魂殿神谕",
-  "卷二十一·第200章：观星者来信",
-  "卷二十一·第201章：七怪保护玩家",
-  "卷二十一·第202章：神性试炼",
-  "卷二十一·第203章：自由核心样本",
-  "卷二十一·第204章：玩家选择",
-  "卷二十二·第205章：捕获失败后的沉默",
-  "卷二十二·第206章：自由样本档案",
-  "卷二十二·第207章：七怪弱点标记",
-  "卷二十二·第208章：观星者亲临",
-  "卷二十二·第209章：玩家诱捕计划",
-  "卷二十二·第210章：被带走的人",
-  "卷二十二·第211章：深渊星会核心区",
-  "卷二十二·第212章：样本室",
-  "卷二十二·第213章：七怪营救",
-  "卷二十二·第214章：自由样本反噬",
-  "卷二十三·第215章：神谕降临",
-  "卷二十三·第216章：武魂殿审判庭",
-  "卷二十三·第217章：玩家监管令",
-  "卷二十三·第218章：黄金一代再会",
-  "卷二十三·第219章：胡列娜的立场",
-  "卷二十三·第220章：武魂殿内部派系",
-  "卷二十三·第221章：神性档案公开",
-  "卷二十三·第222章：史莱克拒令",
-  "卷二十三·第223章：武魂殿与深渊星会",
-  "卷二十三·第224章：三方对峙",
-  "卷二十四·第225章：古代神殿坐标",
-  "卷二十四·第226章：神殿钥匙",
-  "卷二十四·第227章：七怪同行",
-  "卷二十四·第228章：第一试炼：欲望",
-  "卷二十四·第229章：第二试炼：牺牲",
-  "卷二十四·第230章：第三试炼：孤独",
-  "卷二十四·第231章：第四试炼：信仰",
-  "卷二十四·第232章：玩家神性抉择",
-  "卷二十四·第233章：观星者闯入神殿",
-  "卷二十四·第234章：神殿真正的主人",
-  "卷二十五·第235章：被否定的人",
-  "卷二十五·第236章：观星者原名",
-  "卷二十五·第237章：七人同行，一人归来",
-  "卷二十五·第238章：神殿惨剧",
-  "卷二十五·第239章：第一个承载者",
-  "卷二十五·第240章：观星者的执念",
-  "卷二十五·第241章：深渊星会核心暴露",
-  "卷二十五·第242章：观星者真身降临",
-  "卷二十五·第243章：理念决战",
-  "卷二十五·第244章：观星者破防",
-  "卷二十六·第245章：核心区开启",
-  "卷二十六·第246章：星会全面召回",
-  "卷二十六·第247章：人造魂师军团集结",
-  "卷二十六·第248章：史莱克联盟动员",
-  "卷二十六·第249章：武魂殿参战",
-  "卷二十六·第250章：逆星七子的赎罪战",
-  "卷二十六·第251章：星使对星使",
-  "卷二十六·第252章：七怪突入核心区",
-  "卷二十六·第253章：观星者启动神性核心",
-  "卷二十六·第254章：深渊星会总攻",
-  "卷二十七·第255章：荒原金潮",
-  "卷二十七·第256章：神性污染扩散",
-  "卷二十七·第257章：武魂殿强硬派行动",
-  "卷二十七·第258章：七怪救援战",
-  "卷二十七·第259章：人造魂师觉醒",
-  "卷二十七·第260章：失控神性承载者",
-  "卷二十七·第261章：观星者最终宣言",
-  "卷二十七·第262章：大陆战线崩裂",
-  "卷二十七·第263章：七怪神性组合技",
-  "卷二十七·第264章：战争尽头",
-  "卷二十八·第265章：战后闭关",
-  "卷二十八·第266章：封号之路",
-  "卷二十八·第267章：七怪各自的瓶颈",
-  "卷二十八·第268章：玩家武魂最终蜕变",
-  "卷二十八·第269章：魂环与魂骨补全",
-  "卷二十八·第270章：七怪封号试炼",
-  "卷二十八·第271章：黄金一代的挑战",
-  "卷二十八·第272章：封号之名",
-  "卷二十八·第273章：七怪归位",
-  "卷二十八·第274章：终局前夜",
-  "卷二十九·第275章：最终动员",
-  "卷二十九·第276章：深渊核心再开",
-  "卷二十九·第277章：观星者最后实验",
-  "卷二十九·第278章：七怪突入终局场",
-  "卷二十九·第279章：神性核心完全启动",
-  "卷二十九·第280章：自由样本与容器军团",
-  "卷二十九·第281章：星盘世界",
-  "卷二十九·第282章：观星者与陆观辰",
-  "卷二十九·第283章：最终承载选择",
-  "卷二十九·第284章：神性崩塌",
-  "卷三十·第285章：星盘崩塌",
-  "卷三十·第286章：七怪最后集结",
-  "卷三十·第287章：观星者最终形态",
-  "卷三十·第288章：人还是容器",
-  "卷三十·第289章：怪物成神式",
-  "卷三十·第290章：陆观辰的最后选择",
-  "卷三十·第291章：神性终局",
-  "卷三十·第292章：深渊星会覆灭",
-  "卷三十·第293章：史莱克七怪终章",
-  "卷三十·第294章：新的大陆"
-];
-    const VOLUMES = [
-  {
-    "no": 1,
-    "title": "武魂初醒",
-    "start": 1,
-    "end": 8,
-    "area": "青石村 / 魂兽森林",
-    "goal": "完成觉醒，取得第一魂环，听闻史莱克。"
-  },
-  {
-    "no": 2,
-    "title": "通往史莱克",
-    "start": 9,
-    "end": 16,
-    "area": "索托城 / 史莱克学院门前",
-    "goal": "抵达史莱克，完成怪物学院入学考核。"
-  },
-  {
-    "no": 3,
-    "title": "怪物学院",
-    "start": 17,
-    "end": 26,
-    "area": "史莱克学院",
-    "goal": "认识七怪候选，完成团队训练，正式成立七怪。"
-  },
-  {
-    "no": 4,
-    "title": "斗魂扬名",
-    "start": 27,
-    "end": 36,
-    "area": "索托大斗魂场",
-    "goal": "注册斗魂场，打出七怪名声，取得十连胜。"
-  },
-  {
-    "no": 5,
-    "title": "七怪特训",
-    "start": 37,
-    "end": 46,
-    "area": "史莱克学院 / 魂兽森林",
-    "goal": "完成大师极限训练，为全大陆精英魂师大赛做准备。"
-  },
-  {
-    "no": 6,
-    "title": "大赛预选",
-    "start": 47,
-    "end": 56,
-    "area": "天斗赛区",
-    "goal": "通过预选赛，击败元素学院阻击。"
-  },
-  {
-    "no": 7,
-    "title": "晋级赛",
-    "start": 57,
-    "end": 66,
-    "area": "晋级赛营地",
-    "goal": "适应晋级赛规则，取得总决赛资格。"
-  },
-  {
-    "no": 8,
-    "title": "总决赛前夜",
-    "start": 67,
-    "end": 76,
-    "area": "武魂城",
-    "goal": "抵达武魂城，收集黄金一代情报。"
-  },
-  {
-    "no": 9,
-    "title": "黄金决战",
-    "start": 77,
-    "end": 86,
-    "area": "武魂城总决赛场",
-    "goal": "正面对决武魂殿黄金一代。"
-  },
-  {
-    "no": 10,
-    "title": "大陆风云",
-    "start": 87,
-    "end": 96,
-    "area": "大陆各方势力",
-    "goal": "大赛落幕后，开启三年成长之约。"
-  },
-  {
-    "no": 11,
-    "title": "三年成长",
-    "start": 97,
-    "end": 106,
-    "area": "半开放成长路线",
-    "goal": "在八条成长路线中磨炼自己，等待七怪重聚。"
-  },
-  {
-    "no": 12,
-    "title": "七怪重聚",
-    "start": 107,
-    "end": 116,
-    "area": "史莱克旧址 / 大陆道路",
-    "goal": "三年后重聚，重建七怪组合技。"
-  },
-  {
-    "no": 13,
-    "title": "逆星来袭",
-    "start": 117,
-    "end": 126,
-    "area": "雨夜据点 / 黑石峡谷",
-    "goal": "追踪逆星七子，发现禁忌魂师计划。"
-  },
-  {
-    "no": 14,
-    "title": "深渊星纹",
-    "start": 127,
-    "end": 136,
-    "area": "深渊实验场",
-    "goal": "调查倒悬星纹，确认深渊星会的真正威胁。"
-  },
-  {
-    "no": 15,
-    "title": "深渊三路",
-    "start": 137,
-    "end": 146,
-    "area": "深渊三路战场",
-    "goal": "在救赎、讨伐、救援三路中完成正史抉择。"
-  },
-  {
-    "no": 16,
-    "title": "深渊星会",
-    "start": 147,
-    "end": 154,
-    "area": "深渊星会核心区",
-    "goal": "面对人造魂王军团，建立史莱克联盟。"
-  },
-  {
-    "no": 17,
-    "title": "星会反击",
-    "start": 155,
-    "end": 164,
-    "area": "联盟据点 / 星会暗线",
-    "goal": "识破暗杀与内鬼，准备史莱克反击战。"
-  },
-  {
-    "no": 18,
-    "title": "史莱克反击战",
-    "start": 165,
-    "end": 174,
-    "area": "星纹工坊 / 阵法城",
-    "goal": "破坏星会工坊，取得反击第一胜。"
-  },
-  {
-    "no": 19,
-    "title": "星使降临",
-    "start": 175,
-    "end": 184,
-    "area": "星命轮战场",
-    "goal": "迎战完成品星使，确认自由变量。"
-  },
-  {
-    "no": 20,
-    "title": "神性承载",
-    "start": 185,
-    "end": 194,
-    "area": "神性实验场",
-    "goal": "玩家被列为自由核心样本，接触神性承载真相。"
-  },
-  {
-    "no": 21,
-    "title": "神性危机",
-    "start": 195,
-    "end": 204,
-    "area": "神性污染荒原",
-    "goal": "处理掌心金纹危机，接受七怪保护协议。"
-  },
-  {
-    "no": 22,
-    "title": "自由样本",
-    "start": 205,
-    "end": 214,
-    "area": "深渊样本室",
-    "goal": "逃离自由样本捕获计划，救出被标记的同伴。"
-  },
-  {
-    "no": 23,
-    "title": "武魂殿神谕",
-    "start": 215,
-    "end": 224,
-    "area": "武魂殿审判庭",
-    "goal": "应对监管令和三方对峙。"
-  },
-  {
-    "no": 24,
-    "title": "神殿试炼",
-    "start": 225,
-    "end": 234,
-    "area": "无名神殿",
-    "goal": "完成欲望、牺牲、孤独和信仰试炼。"
-  },
-  {
-    "no": 25,
-    "title": "观星者真身",
-    "start": 235,
-    "end": 244,
-    "area": "神殿记忆副本",
-    "goal": "揭开陆观辰与叶清微的过去，让观星者破防。"
-  },
-  {
-    "no": 26,
-    "title": "深渊星会总攻",
-    "start": 245,
-    "end": 254,
-    "area": "大陆总攻战线",
-    "goal": "阻止深渊星会全面总攻。"
-  },
-  {
-    "no": 27,
-    "title": "神性战争",
-    "start": 255,
-    "end": 264,
-    "area": "神性污染战场",
-    "goal": "救援各地，唤醒人造魂师，压制神性金潮。"
-  },
-  {
-    "no": 28,
-    "title": "七怪封号",
-    "start": 265,
-    "end": 274,
-    "area": "封号试炼地",
-    "goal": "完成封号试炼，迎接最终战。"
-  },
-  {
-    "no": 29,
-    "title": "终局：神性承载",
-    "start": 275,
-    "end": 284,
-    "area": "终局场 / 星盘世界",
-    "goal": "突入神性核心，做出最终承载选择。"
-  },
-  {
-    "no": 30,
-    "title": "怪物成神",
-    "start": 285,
-    "end": 294,
-    "area": "星盘世界 / 新大陆",
-    "goal": "击败观星者最终形态，决定神性最终归宿。"
-  }
-];
-
-    const pools={
-      surnames:['林','秦','沈','白','陆','苏','夜','顾','许','洛','石','温','叶','韩','司空','闻人'],
-      names:['寒','青岚','星河','无声','长锋','轻羽','知弦','梦璃','逐星','铁衣','听雨','烬','眠舟','青萝','雪棠','南风'],
-      backgrounds:['边境小村','铁匠之家','猎户之家','药师之家','小城平民','商会子弟','学院杂役','孤儿','战场遗孤','小宗门弟子','没落贵族','黑市流民','被收养的孩子','神秘血脉'],
-      families:['父母健在温暖','单亲抚养','长辈抚养','家贫但坚定','无亲人','身世不明','亲人失踪','被师父收养'],
-      personalities:['坚韧','冷静','热血','谨慎','善良','孤僻','骄傲','隐忍','机敏','野性','神秘'],
-      qualities:[['普通',32],['优秀',30],['稀有',20],['顶级',10],['变异',5],['残缺',2],['神级',1]],
-      wuhun:{
-        '残缺':['裂痕古剑','枯魂藤','失明灵眸'],
-        '普通':['沉锋剑','白羽弓','玄纹盾','苍背狼','碧纹蛇','蓝银藤','赤焰种','清灵水'],
-        '优秀':['流云剑','玄铁枪','锁魂链','灵音琴','疾风豹','岩甲龟','火焰荆棘','寒冰','幻瞳'],
-        '稀有':['雷纹剑','破魂枪','镇心钟','星陨弓','暗影豹','冰灵花','鬼藤','梦魇之瞳','九味药膳'],
-        '顶级':['龙纹剑','霸天锤','九玄宝塔','天星弓','镇魂钟','黄金狮王','玄武灵龟','九尾灵狐','极寒冰凰','生命古树','极致之火'],
-        '变异':['灰烬火种','裂纹玉佩','无声魂铃','白骨藤','空灵瞳'],
-        '神级':['命运之书']
-      },
-      talents:['勤奋','战斗直觉','魂力亲和','体魄强健','身法灵活','精神稳定','悟性过人','武魂共鸣','魂环适应','越战越勇','冷静判断','先天感知','亲和魂兽','药理天赋','器魂淬炼','隐匿本能','领导气质','绝境爆发','命运偏爱','破限之心'],
-      fates:['无特殊','逆境成长','贵人相助','天生战狂','气运之子','灵魂异变','命运多舛','旧日因果','神秘传承','双魂之兆','天命异数']
-    };
-    const battleChapters=new Set([2,8,15,22,24,29,31,33,35,42,44,52,56,66,77,86,117,126,135,146,154,164,174,184,194,204,214,244,254,264,274,284,287,291]);
-    const bossChapters=new Set([8,35,86,146,154,184,194,204,214,244,254,264,274,284,287,291]);
-    const enemyNames={2:'村口挑事少年',8:'赵无极压力考核',15:'史莱克入学初试',22:'赵无极抗压训练',24:'史莱克训练投影',29:'铁角战队',31:'银刃战队',33:'裂山战队',35:'黑岩铁壁战队',42:'魂兽森林异兽',44:'黄金影队模拟战',52:'预选赛强敌',56:'天水学院战队',66:'晋级赛最终对手',77:'黄金一代先锋',86:'武魂殿黄金一代',117:'逆星七子·雨夜挑战',126:'逆星追猎者',135:'深渊实验场',146:'观星者初现',154:'人造魂王军团',164:'星会内鬼',174:'星纹阵法城',184:'完成品星使',194:'半成品神性承载者',204:'自由核心样本捕获战',214:'深渊样本室守卫',244:'观星者真身',254:'深渊星会总攻军团',264:'神性污染金潮',274:'封号试炼投影',284:'完全神性核心',287:'观星者最终形态',291:'神性终局'};
-    const teamTemplates=[
-      ['秦烈','强攻','苍炎狮','狮心破阵'],['夜无声','敏攻','暗影豹','影月瞬杀'],['沈青萝','控制','鬼藤','星纹控局'],['石岳','防御','岩甲龟','玄甲守誓'],['宁雪棠','辅助','九玄宝塔','九光生息'],['白梦璃','精神','梦魇之瞳','真我镇魂'],['阿蛮','特殊','白骨藤','异数裂隙']
-    ];
-
-    let state=defaultState();
-    function defaultState(){return{started:false,mode:'home',tab:'main',chapter:1,segment:0,choiceOpen:false,character:null,bond:35,logs:[],history:[],battle:null,settings:{compact:false,audio:false,animation:true,largeTouch:true,confirmDanger:true},growth:{level:1,exp:0,next:80,statPoints:0,skillPoints:0,coins:30,rings:[],skillLevel:1},inventory:{'小恢复药':3,'魂力药剂':2,'净化药剂':1,'复苏药剂':0,'训练券':0},materials:{'魂兽晶核':0,'星纹碎片':0,'神性残片':0,'魂骨碎片':0},team:teamTemplates.map(t=>({name:t[0],role:t[1],wuhun:t[2],combo:t[3],favor:20,events:0})),codex:{wuhun:[],enemies:[],endings:[]},ngp:0,difficulty:'标准'};}
-    const $=id=>document.getElementById(id);
-    const rand=n=>Math.floor(Math.random()*n);
-    const pick=a=>a[rand(a.length)];
-    function weighted(items){let total=items.reduce((s,x)=>s+x[1],0),r=Math.random()*total;for(const [v,w] of items){r-=w;if(r<=0)return v}return items[0][0]}
-    function volumeOf(ch){return VOLUMES.find(v=>ch>=v.start&&ch<=v.end)||VOLUMES[VOLUMES.length-1]}
-    function cleanTitle(t){return t.replace(/^卷.+?·/,'')}
-    function chapterTitle(ch=state.chapter){return CHAPTER_TITLES[ch-1]||`第${ch}章：正史节点`}
-    function pct(n,d){return Math.max(0,Math.min(100,Math.round(n/d*100)))}
-    function fmt(n){return Math.max(0,Math.round(n))}
-
-    function smartStart(){loadGame(); if(!state.started){newAwakening();return} showApp(); renderAll(); toast('已继续上次进度')}
-    function newAwakening(inputName=''){state=defaultState(); state.started=true; state.mode='story'; state.chapter=1; state.segment=0; state.character=generateCharacter(inputName); state.codex.wuhun.push(state.character.wuhun); if(state.character.easterEgg==='pepper_oil_body_wuhun'){pushLog('隐藏彩蛋触发：角色名“辣椒油”进入先天残缺本体武魂路线。')} pushLog(`武魂觉醒：${state.character.name} 觉醒 ${state.character.wuhun}`); saveGame(false); showApp(); renderAll(); toast(state.character.easterEgg==='pepper_oil_body_wuhun'?'隐藏彩蛋触发':'新的觉醒完成')}
-    function generateCharacter(inputName=''){
-      const rawName=String(inputName||'').trim();
-      if(rawName==='辣椒油') return generatePepperOilCharacter();
-      const q=weighted(pools.qualities), w=pick(pools.wuhun[q]); const power=q==='神级'?rand(2)+9:q==='顶级'?rand(3)+8:q==='稀有'?rand(3)+6:q==='优秀'?rand(4)+4:q==='普通'?rand(4)+2:q==='残缺'?rand(4):rand(10)+1; const name=rawName||pick(pools.surnames)+pick(pools.names); let hp=120+power*10, sp=60+power*8, atk=16+power*2, def=12+power, spd=12+power, mind=14+power*2; return{name,bg:pick(pools.backgrounds),family:pick(pools.families),personality:pick(pools.personalities),quality:q,wuhun:w,power,talent:pick(pools.talents), fate:pick(pools.fates), hpMax:hp,hp,spMax:sp,sp,atk,def,spd,mind,skills:makeSkills(w,q,power)}
-    }
-    function generatePepperOilCharacter(){
-      const power=1, w='本体武魂：阴茎', q='先天残缺';
-      let hp=128, sp=58, atk=18, def=14, spd=16, mind=24;
-      return{name:'辣椒油',bg:'隐藏整蛊开局',family:'朋友认证',personality:'嘴硬',quality:q,wuhun:w,power,talent:'破防不认',fate:'损友彩蛋',easterEgg:'pepper_oil_body_wuhun',hpMax:hp,hp,spMax:sp,sp,atk,def,spd,mind,skills:makePepperOilSkills()}
-    }
-    function makeSkills(w,q,p){return[{name:`${w}·第一魂技`,cost:16,power:34+p*3,type:'输出',desc:'稳定伤害，适合常规回合。'},{name:`${w}·破势`,cost:24,power:48+p*4,type:'爆发',desc:'高消耗高伤害，适合Boss破绽。'},{name:`${w}·守心`,cost:18,power:0,type:'守护',desc:'恢复生命并降低下一次伤害。'}]}
-    function makePepperOilSkills(){return[
-      {name:'第一魂技：我没破防',cost:12,power:30,type:'嘴硬',desc:'受到嘲笑时强行嘴硬，造成伤害并小幅提升防御。'},
-      {name:'第二魂技：辣眼睛飞溅',cost:18,power:42,type:'干扰',desc:'把敌人辣到睁不开眼，造成伤害并降低敌方命中感。'},
-      {name:'第三魂技：先天残缺但不服',cost:24,power:54,type:'爆发',desc:'生命越低越不服，适合在危险回合反打。'}
-    ]}
-    function showApp(){$('home').classList.add('hidden');$('app').classList.remove('hidden');$('bottomNav').classList.add('show')}
-    function showHome(){$('app').classList.add('hidden');$('bottomNav').classList.remove('show');$('home').classList.remove('hidden')}
-    function switchTab(tab){state.tab=tab; document.querySelectorAll('.tab-page').forEach(e=>e.classList.toggle('active',e.id===`tab-${tab}`)); document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab)); renderAll(false)}
-    function renderAll(full=true){applySettings(); renderTop(); renderMain(); renderRole(); renderTeam(); renderBag(); renderMore(); if(full) saveGame(false)}
-    function renderTop(){const c=state.character;if(!c)return; $('avatar').textContent=c.wuhun.slice(0,1); $('playerName').textContent=`${c.name}｜${state.growth.level}级魂师`; $('playerSub').textContent=`${c.quality} · ${c.wuhun}｜${c.bg}｜羁绊 ${state.bond}`; $('topHp').style.width=pct(c.hp,c.hpMax)+'%'; $('topSp').style.width=pct(c.sp,c.spMax)+'%'}
-    function renderMain(){if(!state.started||!state.character){$('tab-main').innerHTML=emptyAwaken();return} if(state.mode==='battle') renderBattle(); else if(state.mode==='ending') renderEnding(); else renderStory()}
-    function emptyAwaken(){return `<section class="card"><div class="eyebrow">尚未觉醒</div><div class="title">先开始随机觉醒</div><p class="muted">v3.0 首页只有三个入口。游戏主线会从这里开始，不需要先研究系统。</p><button class="primary" onclick="newAwakening()">开始随机觉醒</button></section>`}
-    function storySegments(){const v=volumeOf(state.chapter), title=cleanTitle(chapterTitle()); const c=state.character; if(c&&c.easterEgg==='pepper_oil_body_wuhun'&&state.chapter===1){const egg=[`觉醒石突然沉默了。`,`村口所有人都盯着 <b>辣椒油</b>，以为会出现惊天动地的神级武魂。`,`下一秒，石面浮现出四个字：<b style="color:var(--gold)">先天残缺</b>。`,`紧接着，隐藏本体武魂显现：<b style="color:var(--red)">${c.wuhun}</b>。`,`全场安静三秒，然后爆发出史无前例的笑声。辣椒油咬牙表示：我没破防。`]; if(battleChapters.has(state.chapter)) egg.push(`空气突然变得沉重。这个节点将进入一场正史战斗。`); egg.push(`当前目标：${v.goal}`); return egg} const lines=[`你当前位于 <b>${v.area}</b>。`,`正史推进到 <b>${title}</b>。`,`你的武魂 <b style="color:var(--gold)">${c.wuhun}</b> 在魂力流转中微微发亮。`]; if(battleChapters.has(state.chapter)) lines.push(`空气突然变得沉重。这个节点将进入一场正史战斗。`); else lines.push(`这一章没有强制战斗，重点是推进剧情、队友羁绊和成长。`); lines.push(`当前目标：${v.goal}`); return lines}
-    function renderStory(){const v=volumeOf(state.chapter), title=chapterTitle(); const segs=storySegments(); const index=Math.min(state.segment,segs.length-1); const choiceBlock=state.choiceOpen?renderChoices():''; $('tab-main').innerHTML=`
-      <section class="card fade-in">
-        <div class="row between"><span class="eyebrow">正史主线</span><span class="pill">${state.chapter}/294</span></div>
-        <div class="title">卷${v.no}《${v.title}》</div>
-        <div class="muted small">${title}</div>
-        <div class="progress" style="margin-top:12px"><span style="width:${pct(state.chapter,294)}%"></span></div>
-      </section>
-      <section class="card fade-in">
-        <div class="eyebrow">当前剧情</div>
-        <div class="story-text"><p>${segs[index]}</p></div>
-        <div class="row between"><span class="pill">目标：${v.goal}</span></div>
-      </section>
-      ${choiceBlock}
-      <div class="main-action"><button class="primary" onclick="smartContinue()">继续</button></div>`}
-    function renderChoices(){return `<section class="card"><div class="section-title">选择处理方式</div><div class="choice-list">
-      <button class="choice" onclick="makeChoice('steady')"><b>稳健推进</b><span class="muted small">保持正史路线，获得少量经验和防御倾向。</span></button>
-      <button class="choice" onclick="makeChoice('active')"><b>主动承担</b><span class="muted small">保持正史路线，提升七怪羁绊和攻击倾向。</span></button>
-    </div></section>`}
-    function smartContinue(){if(!state.started){newAwakening();return} if(state.mode==='battle'){toast('战斗中请选择行动');return} if(state.mode==='ending'){renderEnding();return} const segs=storySegments(); if(state.choiceOpen){toast('请先做出选择');return} if(state.segment<segs.length-1){state.segment++; pulseMain(); renderAll();return} state.choiceOpen=true; renderAll()}
-    function makeChoice(type){state.choiceOpen=false; if(type==='steady'){gainExp(18); state.character.def+=1; pushLog('选择稳健推进，防御+1，经验+18。')} else {gainExp(18); state.bond+=2; state.character.atk+=1; pushLog('选择主动承担，攻击+1，七怪羁绊+2。')} if(battleChapters.has(state.chapter)) startBattle(); else nextChapter(); renderAll()}
-    function nextChapter(){if(state.chapter>=294){finishGame();return} state.chapter++; state.segment=0; state.mode='story'; unlockByChapter(); saveGame(false)}
-    function unlockByChapter(){if(state.chapter%10===0){state.inventory['小恢复药']=(state.inventory['小恢复药']||0)+1; pushLog('阶段补给：小恢复药 +1。')} const v=volumeOf(state.chapter); if(state.chapter===v.start) pushLog(`进入卷${v.no}《${v.title}》。`)}
-
-    function startBattle(){const ch=state.chapter, v=volumeOf(ch), boss=bossChapters.has(ch); const base=70+ch*3; const name=enemyNames[ch]||`${v.title}对手`; const mult=difficultyMult(); state.battle={chapter:ch,name,boss,turn:1,guard:false,enemy:{hpMax:Math.round((base+(boss?180:60))*mult.hp),hp:Math.round((base+(boss?180:60))*mult.hp),spMax:80+v.no*12,sp:80+v.no*12,atk:Math.round((18+v.no*4)*mult.atk),def:12+v.no*2,phase:1},log:[`遭遇 ${name}。${boss?'这是Boss节点，注意血量阶段。':''}`],stats:{damage:0,taken:0,healed:0,items:0,skills:0,turns:1}}; state.mode='battle'; state.codex.enemies=[...new Set([...state.codex.enemies,name])]; saveGame(false)}
-    function renderBattle(){const b=state.battle,c=state.character,e=b.enemy; $('tab-main').innerHTML=`
-      <section class="card fade-in"><div class="row between"><span class="eyebrow">正史战斗</span><span class="pill">第${b.turn}回合</span></div><div class="title">${b.name}${b.boss?' · Boss':''}</div><p class="muted small">简化战斗界面：只保留四个主按钮，其余操作收在更多里。</p></section>
-      <section class="battle-arena">
-        <div class="fighter enemy"><div class="row between"><b>${e.hp<=0?'已击败':b.name}</b><span class="pill">阶段 ${e.phase}</span></div><div class="bar hpbar"><span style="width:${pct(e.hp,e.hpMax)}%"></span></div><div class="small muted">生命 ${fmt(e.hp)}/${fmt(e.hpMax)}</div></div>
-        <div class="fighter"><div class="row between"><b>${c.name}</b><span class="pill">${c.wuhun}</span></div><div class="bar hpbar"><span style="width:${pct(c.hp,c.hpMax)}%"></span></div><div class="bar spbar"><span style="width:${pct(c.sp,c.spMax)}%"></span></div><div class="small muted">生命 ${fmt(c.hp)}/${fmt(c.hpMax)}　魂力 ${fmt(c.sp)}/${fmt(c.spMax)}</div></div>
-      </section>
-      <section class="card"><div class="section-title">战斗日志</div><div class="log">${b.log.slice(-6).map(x=>`<div class="log-line">${x}</div>`).join('')}</div></section>
-      <section class="card"><div class="battle-actions"><button onclick="openSkillSheet()">魂技</button><button onclick="basicAttack()">普攻</button><button onclick="guard()">防御</button><button onclick="openItemSheet()">道具</button></div><button class="ghost" style="width:100%;margin-top:10px" onclick="openBattleMore()">更多战斗操作</button></section>`}
-    function difficultyMult(){return {'简单':{hp:.78,atk:.75,reward:.9},'标准':{hp:1,atk:1,reward:1},'困难':{hp:1.25,atk:1.2,reward:1.2},'噩梦':{hp:1.55,atk:1.45,reward:1.5}}[state.difficulty]||{hp:1,atk:1,reward:1}}
-    function openSkillSheet(){const c=state.character; openSheet('选择魂技', c.skills.map((s,i)=>`<button class="item" onclick="useSkill(${i})"><div class="item-title">${s.name}｜魂力 ${s.cost}</div><div class="item-desc">${s.desc} ${s.type==='守护'?'治疗/减伤':`威力 ${s.power}`}</div></button>`).join(''))}
-    function openItemSheet(){const items=Object.entries(state.inventory).filter(([k,v])=>v>0); openSheet('使用道具', items.length?items.map(([k,v])=>`<button class="item" onclick="useItem('${k}')"><div class="item-title">${k} × ${v}</div><div class="item-desc">${itemDesc(k)}</div></button>`).join(''):'<div class="item muted">背包里没有可用道具。</div>')}
-    function openBattleMore(){openSheet('更多战斗操作',`<button class="item" onclick="comboAttack()"><div class="item-title">七怪组合技</div><div class="item-desc">消耗较高，对Boss阶段有额外收益。</div></button><button class="item" onclick="tactic()"><div class="item-title">战术调整</div><div class="item-desc">恢复少量魂力，并提高下一次命中。</div></button><button class="item" onclick="closeSheet()"><div class="item-title">返回战斗</div></button>`)}
-    function itemDesc(k){return {'小恢复药':'恢复80生命。','魂力药剂':'恢复55魂力。','净化药剂':'解除神性污染、星纹烙印等负面状态。','复苏药剂':'倒下时恢复部分生命。','训练券':'非战斗成长资源。'}[k]||'道具'}
-    function useSkill(i){closeSheet(); const s=state.character.skills[i]; if(state.character.sp<s.cost){battleLog('魂力不足。'); enemyTurn();return} state.character.sp-=s.cost; if(s.type==='守护'){const heal=45+state.character.mind*.8; state.character.hp=Math.min(state.character.hpMax,state.character.hp+heal); state.battle.guard=true; state.battle.stats.healed+=heal; battleLog(`${s.name} 展开守护，恢复 ${fmt(heal)} 生命。`)} else {const dmg=Math.max(8,s.power+state.character.atk*1.2-state.battle.enemy.def*.55+rand(18)); dealDamage(dmg,`${s.name} 命中，造成 ${fmt(dmg)} 伤害。`); state.battle.stats.skills++} afterPlayerAction()}
-    function basicAttack(){const dmg=Math.max(5,state.character.atk*1.15-state.battle.enemy.def*.35+rand(12)); dealDamage(dmg,`普攻命中，造成 ${fmt(dmg)} 伤害。`); afterPlayerAction()}
-    function guard(){state.battle.guard=true; state.character.sp=Math.min(state.character.spMax,state.character.sp+14); battleLog('你采取防御姿态，恢复少量魂力。'); afterPlayerAction()}
-    function useItem(k){closeSheet(); if((state.inventory[k]||0)<=0)return; state.inventory[k]--; state.battle.stats.items++; if(k==='小恢复药'){state.character.hp=Math.min(state.character.hpMax,state.character.hp+80); battleLog('使用小恢复药，生命恢复80。')} else if(k==='魂力药剂'){state.character.sp=Math.min(state.character.spMax,state.character.sp+55); battleLog('使用魂力药剂，魂力恢复55。')} else if(k==='净化药剂'){battleLog('使用净化药剂，清除了负面压制。')} else if(k==='复苏药剂'){state.character.hp=Math.min(state.character.hpMax,state.character.hp+120); battleLog('使用复苏药剂，生命恢复120。')} afterPlayerAction()}
-    function comboAttack(){closeSheet(); const cost=36; if(state.character.sp<cost){battleLog('魂力不足，无法发动组合技。'); enemyTurn(); return} state.character.sp-=cost; const bonus=1+state.bond/160; const dmg=(70+state.character.atk*1.5+state.growth.level*4)*bonus; dealDamage(dmg,`七怪组合技爆发，造成 ${fmt(dmg)} 伤害。`); afterPlayerAction()}
-    function tactic(){closeSheet(); state.character.sp=Math.min(state.character.spMax,state.character.sp+24); state.bond+=1; battleLog('你调整战术，魂力恢复24，七怪羁绊+1。'); afterPlayerAction()}
-    function dealDamage(dmg,msg){const e=state.battle.enemy; e.hp=Math.max(0,e.hp-dmg); state.battle.stats.damage+=dmg; battleLog(msg); checkPhase()}
-    function checkPhase(){const b=state.battle,e=b.enemy;if(!b.boss)return; const ratio=e.hp/e.hpMax; const next=ratio<.22?4:ratio<.45?3:ratio<.72?2:1; if(next>e.phase){e.phase=next;battleLog(`Boss进入第${next}阶段，压力明显增强。`)}}
-    function afterPlayerAction(){if(state.battle.enemy.hp<=0){winBattle();return} enemyTurn(); if(state.character.hp<=0){loseBattle();return} state.battle.turn++; state.battle.stats.turns=state.battle.turn; renderAll()}
-    function enemyTurn(){const b=state.battle,e=b.enemy,c=state.character; let dmg=Math.max(5,e.atk+e.phase*7-c.def*.45+rand(15)); if(b.guard){dmg*=.45;b.guard=false} c.hp=Math.max(0,c.hp-dmg); b.stats.taken+=dmg; battleLog(`${b.name} 反击，造成 ${fmt(dmg)} 伤害。`)}
-    function battleLog(t){state.battle.log.push(t); pushLog(t)}
-    function winBattle(){const b=state.battle,m=difficultyMult(); const exp=Math.round((45+volumeOf(b.chapter).no*8+(b.boss?60:0))*m.reward); const coins=Math.round((20+volumeOf(b.chapter).no*4+(b.boss?30:0))*m.reward); gainExp(exp); state.growth.coins+=coins; state.inventory['小恢复药']=(state.inventory['小恢复药']||0)+(b.boss?1:0); if(b.boss) state.materials['魂骨碎片']=(state.materials['魂骨碎片']||0)+1; pushLog(`战斗胜利：经验+${exp}，魂币+${coins}${b.boss?'，魂骨碎片+1':''}。`); state.history.unshift({name:b.name,result:'胜利',chapter:b.chapter,turns:b.turn,damage:fmt(b.stats.damage),taken:fmt(b.stats.taken),time:new Date().toLocaleString()}); state.history=state.history.slice(0,10); state.mode='story'; state.battle=null; nextChapter(); toast('战斗胜利')}
-    function loseBattle(){pushLog('战斗失败：系统保留正史推进，但你需要复盘恢复。'); state.character.hp=Math.round(state.character.hpMax*.65); state.character.sp=Math.round(state.character.spMax*.5); gainExp(25); state.mode='story'; state.battle=null; toast('已复盘恢复'); nextChapter()}
-
-    function gainExp(n){state.growth.exp+=n; while(state.growth.exp>=state.growth.next){state.growth.exp-=state.growth.next; levelUp()}}
-    function levelUp(){const g=state.growth,c=state.character; g.level++; g.statPoints+=2; g.skillPoints+=1; g.next=Math.round(g.next*1.18+30); c.hpMax+=14;c.spMax+=8;c.atk+=2;c.def+=1;c.spd+=1;c.mind+=1;c.hp=c.hpMax;c.sp=c.spMax; const ringAt=[10,20,30,40,50,60,70,80,90]; ringAt.forEach((lv,i)=>{const name=`第${i+1}魂环`; if(g.level>=lv&&!g.rings.includes(name))g.rings.push(name)}); pushLog(`等级提升到 ${g.level}，属性点+2，技能点+1。`)}
-    function renderRole(){const c=state.character;if(!c){$('tab-role').innerHTML=emptyAwaken();return} const egg=c.easterEgg==='pepper_oil_body_wuhun'?'<div class="pill" style="color:var(--red);border-color:rgba(255,127,149,.35);background:rgba(255,127,149,.1);margin-top:8px">隐藏彩蛋：辣椒油专属先天残缺路线</div>':''; $('tab-role').innerHTML=`<section class="card"><div class="eyebrow">角色</div><div class="title">${c.name}</div><p class="muted">${c.bg}｜${c.family}｜${c.personality}｜${c.talent}｜命格：${c.fate}</p>${egg}<div class="stats"><div class="stat"><span>等级</span><b>${state.growth.level}</b></div><div class="stat"><span>经验</span><b>${state.growth.exp}/${state.growth.next}</b></div><div class="stat"><span>魂币</span><b>${state.growth.coins}</b></div></div></section><section class="card"><div class="section-title">属性</div><div class="stats"><div class="stat"><span>生命</span><b>${fmt(c.hpMax)}</b></div><div class="stat"><span>魂力</span><b>${fmt(c.spMax)}</b></div><div class="stat"><span>攻击</span><b>${fmt(c.atk)}</b></div><div class="stat"><span>防御</span><b>${fmt(c.def)}</b></div><div class="stat"><span>速度</span><b>${fmt(c.spd)}</b></div><div class="stat"><span>精神</span><b>${fmt(c.mind)}</b></div></div></section><section class="card"><div class="section-title">魂环与魂技</div><div class="list">${c.skills.map(s=>`<div class="item"><div class="item-title">${s.name}</div><div class="item-desc">${s.desc}</div></div>`).join('')}<div class="item"><div class="item-title">魂环</div><div class="item-desc">${state.growth.rings.length?state.growth.rings.join('、'):'尚未解锁魂环节点'}</div></div></div></section>`}
-    function renderTeam(){const cards=state.team.map(t=>`<div class="item"><div class="row between"><div><div class="item-title">${t.name}｜${t.role}</div><div class="item-desc">武魂：${t.wuhun}｜专属组合技：${t.combo}</div></div><span class="pill">好感 ${t.favor}</span></div></div>`).join(''); $('tab-team').innerHTML=`<section class="card"><div class="eyebrow">队伍</div><div class="title">新一代史莱克七怪</div><p class="muted">队伍系统在 v3.0 中被收进单独页面，不再挤在主线界面里。</p><div class="progress"><span style="width:${pct(state.bond,100)}%"></span></div><p class="small muted">七怪羁绊：${state.bond}</p></section><section class="card"><div class="list">${cards}</div></section>`}
-    function renderBag(){const inv=Object.entries(state.inventory).map(([k,v])=>`<div class="item"><div class="row between"><div class="item-title">${k}</div><span class="pill">×${v}</span></div><div class="item-desc">${itemDesc(k)}</div></div>`).join(''); const mats=Object.entries(state.materials).map(([k,v])=>`<span class="pill">${k} × ${v}</span>`).join(' '); $('tab-bag').innerHTML=`<section class="card"><div class="eyebrow">背包</div><div class="title">道具、装备、魂骨都收纳在这里</div><p class="muted">主线界面不再显示背包细节。战斗需要用药时再打开。</p></section><section class="card"><div class="section-title">战斗道具</div><div class="list">${inv}</div></section><section class="card"><div class="section-title">材料</div><div>${mats}</div></section>`}
-    function renderMore(){const v=volumeOf(state.chapter); $('tab-more').innerHTML=`<section class="card"><div class="eyebrow">更多</div><div class="title">系统入口已收纳</div><p class="muted">任务、地图、图鉴、结局、设置、存档和高级工具都放在这里，不再干扰主流程。</p></section><section class="grid">
-      <details class="accordion" open><summary>当前目标</summary><div class="accordion-body">卷${v.no}《${v.title}》｜${v.goal}<br>当前区域：${v.area}<br>正史进度：${pct(state.chapter,294)}%</div></details>
-      <details class="accordion"><summary>地图探索</summary><div class="accordion-body">已解锁：${VOLUMES.filter(x=>state.chapter>=x.start).map(x=>x.area).join('、')}</div></details>
-      <details class="accordion"><summary>图鉴与战斗历史</summary><div class="accordion-body">武魂图鉴：${state.codex.wuhun.join('、')||'无'}<br>敌人图鉴：${state.codex.enemies.slice(-8).join('、')||'无'}<br>最近战斗：${state.history.map(h=>`${h.name} ${h.result}`).join('；')||'无'}</div></details>
-      <details class="accordion"><summary>存档管理</summary><div class="accordion-body"><button class="secondary" onclick="saveGame(true)">手动存档</button> <button class="ghost" onclick="exportSave()">导出存档</button> <button class="danger" onclick="clearSave()">清除存档</button><textarea id="saveBox" placeholder="导出的存档会显示在这里，也可以粘贴存档后导入" style="width:100%;min-height:90px;margin-top:10px;border-radius:14px;background:#0b1020;color:white;border:1px solid var(--line);padding:10px"></textarea><button class="ghost" onclick="importSave()" style="margin-top:8px">导入文本存档</button></div></details>
-      <details class="accordion"><summary>设置</summary><div class="accordion-body"><label><input type="checkbox" ${state.settings.compact?'checked':''} onchange="state.settings.compact=this.checked;renderAll()"> 紧凑界面</label><br><label><input type="checkbox" ${state.settings.largeTouch?'checked':''} onchange="state.settings.largeTouch=this.checked;renderAll()"> 大触控模式</label><br><label>难度 <select onchange="state.difficulty=this.value;renderAll()"><option ${state.difficulty==='简单'?'selected':''}>简单</option><option ${state.difficulty==='标准'?'selected':''}>标准</option><option ${state.difficulty==='困难'?'selected':''}>困难</option><option ${state.difficulty==='噩梦'?'selected':''}>噩梦</option></select></label></div></details>
-    </section>`}
-
-    function openSheet(title,body){$('sheet').innerHTML=`<div class="sheet-head"><b>${title}</b><button class="sheet-close" onclick="closeSheet()">关闭</button></div><div class="list">${body}</div>`; $('sheet').classList.remove('hidden')}
-    function closeSheet(){$('sheet').classList.add('hidden')}
-    function openSettingsFromHome(){state.tab='more'; showApp(); renderAll(); switchTab('more')}
-    function pulseMain(){if(!state.settings.animation)return; const el=$('tab-main'); el.classList.remove('pulse'); void el.offsetWidth; el.classList.add('pulse')}
-    function pushLog(t){state.logs.unshift({t,time:Date.now()}); state.logs=state.logs.slice(0,40)}
-    function toast(t){const el=$('toast'); el.textContent=t; el.classList.remove('hidden'); clearTimeout(window.__toast); window.__toast=setTimeout(()=>el.classList.add('hidden'),1500)}
-    function finishGame(){state.mode='ending'; state.codex.endings=[...new Set([...state.codex.endings,'怪物成神'])]; renderAll(); saveGame(false)}
-    function renderEnding(){$('tab-main').innerHTML=`<section class="card fade-in"><div class="eyebrow">最终结局</div><div class="title">怪物成神</div><div class="story-text"><p>星盘世界崩塌，七怪站在新大陆的晨光里。神性不再是容器，而成为被人选择的道路。</p></div><button class="primary" onclick="startNewPlus()">开启二周目</button></section>`}
-    function startNewPlus(){state.ngp++; const keep={ngp:state.ngp,codex:state.codex}; state=defaultState(); state.ngp=keep.ngp; state.codex=keep.codex; state.started=true; state.mode='story'; state.character=generateCharacter(); state.growth.coins+=80*state.ngp; saveGame(false); renderAll(); toast(`二周目 ${state.ngp} 开始`)}
-    function applySettings(){document.body.classList.toggle('compact',!!state.settings.compact);document.body.classList.toggle('large-touch',!!state.settings.largeTouch)}
-    function saveGame(show=false){try{localStorage.setItem(SAVE_KEY,JSON.stringify(state)); if(show) toast('已保存')}catch(e){if(show) toast('保存失败')}}
-    function loadGame(){try{const raw=localStorage.getItem(SAVE_KEY); if(raw){state=Object.assign(defaultState(),JSON.parse(raw)); repairState()}}catch(e){state=defaultState()}}
-    function repairState(){const d=defaultState(); state.settings=Object.assign(d.settings,state.settings||{}); state.growth=Object.assign(d.growth,state.growth||{}); state.inventory=Object.assign(d.inventory,state.inventory||{}); state.materials=Object.assign(d.materials,state.materials||{}); state.team=state.team&&state.team.length?state.team:d.team; state.codex=Object.assign(d.codex,state.codex||{}); if(!state.character&&state.started)state.character=generateCharacter()}
-    function exportSave(){const box=$('saveBox'); if(box) box.value=JSON.stringify(state,null,2); toast('存档已导出到文本框')}
-    function importSave(){const box=$('saveBox'); if(!box||!box.value.trim()){toast('请先粘贴存档文本');return} try{state=JSON.parse(box.value); repairState(); saveGame(false); renderAll(); toast('导入成功')}catch(e){toast('导入失败，存档格式不对')}}
-    function clearSave(){if(state.settings.confirmDanger&&!confirm('确认清除 v3.0 本地存档？'))return; localStorage.removeItem(SAVE_KEY); state=defaultState(); showHome(); toast('存档已清除')}
-
-    loadGame(); if(state.started){showApp(); renderAll()} else {showHome()}
-  </script>
+<body>
+<div id="root"></div>
+<nav id="nav" class="nav"><button id="nav-story" onclick="setTab('story')">主线</button><button id="nav-role" onclick="setTab('role')">角色</button><button id="nav-bond" onclick="setTab('bond')">羁绊</button><button id="nav-note" onclick="setTab('note')">札记</button></nav>
+<script>
+const SAVE_KEY='douluo_text_rpg_novel_reading_save';
+const VOLUMES=[{"title": "武魂初醒", "area": "青石村", "theme": "觉醒与第一魂环", "mood": "晨雾、泥土、觉醒石的微光", "pressure": "村口的目光与未知命运", "figure": "老魂师", "image": "青石广场边的槐树在晨风里沙沙作响", "count": 8, "events": ["武魂觉醒", "村口冲突", "后山夜训", "魂力初潮", "旧物线索", "猎魂小队", "第一魂环", "通往索托的风"]}, {"title": "通往史莱克", "area": "索托城", "theme": "离村、索托与入学考核", "mood": "陌生城池、斗魂喧嚣、少年远行", "pressure": "离开家乡后的孤独与史莱克门槛的压迫", "figure": "戴草帽的招生老师", "image": "索托城灯火像一片倒悬的星河", "count": 8, "events": ["离开青石村", "索托城灯火", "大斗魂场初闻", "史莱克报名", "第一关测试", "门前冲突", "赵无极压力", "怪物入学"]}, {"title": "怪物学院", "area": "史莱克学院", "theme": "七怪初成", "mood": "破旧木屋、草地训练、怪物们的第一次并肩", "pressure": "每个人都锋芒毕露，却还没有学会相信别人", "figure": "弗兰德与大师", "image": "学院破旧的木牌在夕阳下摇晃", "count": 10, "events": ["破旧学院", "新生宿舍", "怪物们第一次见面", "弗兰德第一堂课", "大师武魂理论", "赵无极抗压训练", "七怪候选排名", "第一次团队训练", "内部矛盾", "七怪正式成立"]}, {"title": "斗魂扬名", "area": "索托大斗魂场", "theme": "七怪团战与十连胜", "mood": "灯火、呐喊、铜铃和押注声", "pressure": "胜利让人热血，也会让弱点暴露在所有人面前", "figure": "斗魂场主持人", "image": "斗魂台边缘的金属栏杆被魂力震得发颤", "count": 10, "events": ["七怪第一次集合", "斗魂场注册", "第一场七人团战", "战术磨合", "连胜之始", "队友支线开启", "强敌战队登场", "组合技突破", "十连胜之夜", "扬名索托城"]}, {"title": "七怪特训", "area": "史莱克学院与魂兽森林", "theme": "极限训练与大赛邀请", "mood": "汗水、药浴、夜间森林的兽吼", "pressure": "天才不止你们一队，大赛不会给任何人慢慢成长的机会", "figure": "大师", "image": "训练场的地面被反复踩出深浅不一的坑", "count": 10, "events": ["十连胜后的代价", "大师的极限训练", "全大陆精英魂师大赛", "武魂殿黄金一代", "魂环规划", "再入魂兽森林", "队友个人支线深入", "七怪分组特训", "组合技进阶", "大赛邀请"]}, {"title": "大赛预选", "area": "天斗赛区", "theme": "预选赛与元素学院", "mood": "旗帜、人潮、学院战袍与无数审视", "pressure": "所有队伍都想踩着史莱克的名字出名", "figure": "天斗赛区裁判", "image": "赛场上方的旗帜被魂力余波卷得猎猎作响", "count": 10, "events": ["天斗赛区", "开幕式", "青藤学院预选战", "连续预选战", "被针对的一战", "预选关键战", "元素学院登场", "天水学院之战", "炽火神风雷霆", "史莱克出线"]}, {"title": "晋级赛", "area": "天斗帝国军营", "theme": "单人赛与战术考验", "mood": "军帐、沙盘、夜色里的篝火", "pressure": "团队被拆成个人，每个人都必须独自承担胜负", "figure": "帝国军官", "image": "军营里的号角声在清晨显得格外冰冷", "count": 10, "events": ["晋级赛规则", "第一轮点名", "单人守擂", "伙伴的底牌", "被研究的弱点", "天水再会", "炽火再燃", "神风压场", "雷霆最终战", "前往总决赛"]}, {"title": "总决赛前夜", "area": "武魂城", "theme": "总决赛压力与黄金一代", "mood": "神殿钟声、白石长街、无形的威严", "pressure": "武魂城的每一面墙都像在提醒你们：这里不是索托", "figure": "武魂殿使者", "image": "武魂城高塔投下的阴影覆盖半条长街", "count": 10, "events": ["抵达武魂城", "城门下的审视", "黄金一代档案", "夜谈与约定", "武魂殿试探", "最后一次排兵", "总决赛抽签", "对手的压迫感", "七怪誓言", "总决赛开幕"]}, {"title": "黄金决战", "area": "武魂城斗魂台", "theme": "总决赛与黄金一代", "mood": "金色魂光、破碎地砖、全场屏息", "pressure": "这是少年时代最耀眼也最危险的一战", "figure": "黄金一代", "image": "斗魂台中央的裂纹像一张缓缓张开的网", "count": 10, "events": ["黄金一代登场", "第一轮鏖战", "控制与反控制", "辅助线的危机", "核心被锁定", "七怪反击", "终局组合技", "黄金一代压境", "最后一击", "黄金决战落幕"]}, {"title": "大陆风云", "area": "大陆诸城", "theme": "大赛之后与三年之约", "mood": "来信、邀请、离别的车辙", "pressure": "成名不是终点，而是被所有势力看见的开始", "figure": "各方势力来客", "image": "夜里未烧尽的信纸在灯下卷曲", "count": 10, "events": ["大赛之后", "各方势力的目光", "武魂殿暗流", "宗门邀请", "家乡来信", "七怪短别", "三年之约", "个人路线抉择", "远行前夜", "各自成长线开启"]}, {"title": "三年成长", "area": "大陆游历路线", "theme": "半开放成长", "mood": "风雪、远路、陌生城镇与独自修行", "pressure": "没有队友站在身边时，你才知道自己究竟有多强", "figure": "路上的无名魂师", "image": "远行靴底沾着不同城镇的尘土", "count": 10, "events": ["新的道路", "第一年危机", "陌生城镇", "魂兽森林深处", "宗门边境", "黑市传闻", "武魂进化契机", "第二年冬雪", "第三年归信", "史莱克重聚"]}, {"title": "七怪重聚", "area": "史莱克旧址", "theme": "重逢、磨合与逆星暗影", "mood": "旧址、故人、新伤与重新磨合", "pressure": "重逢并不代表回到过去，每个人都带着三年的变化", "figure": "迟到的队友", "image": "旧训练场的草比记忆里更高", "count": 10, "events": ["三年后的七怪", "迟到的人", "队友求援", "重建组合技", "旧日裂痕", "逆星传闻", "七怪新定位", "雨夜来客", "逆星七子影子", "七怪再出发"]}, {"title": "逆星来袭", "area": "雨夜古道与黑石峡谷", "theme": "逆星七子与禁忌魂师计划", "mood": "雨水、黑衣、倒悬星纹与沉默的杀意", "pressure": "敌人不只是敌人，他们像是另一种被迫长大的你们", "figure": "逆星七子", "image": "雨点打在倒悬星纹上，像敲响一口暗钟", "count": 10, "events": ["雨夜挑战", "星陨枪试探", "罗刹音精神污染", "七怪新组合技", "黑石峡谷", "禁忌魂师计划", "编号十三", "逆星邀请", "武魂殿禁档", "追踪逆星"]}, {"title": "深渊星纹", "area": "深渊实验场", "theme": "倒悬星纹与实验真相", "mood": "冷白灯、封存档案、墙后呼吸声", "pressure": "真相越清楚，越难把敌人只当敌人", "figure": "编号十三", "image": "实验场墙壁里的魂力纹路像活着的血管", "count": 10, "events": ["倒悬星纹", "星纹污染", "实验体名单", "第一实验场", "十三的记忆", "深渊档案", "七怪分路潜入", "星纹核心", "观星者的影子", "史莱克的决定"]}, {"title": "深渊三路", "area": "深渊边境", "theme": "救赎、讨伐与实验体救援", "mood": "三条路、三种代价、同一片黑暗", "pressure": "无论选哪条路，都有人会质疑你不够正确", "figure": "编号十三与逆星残党", "image": "深渊入口像一道没有星光的裂缝", "count": 8, "events": ["三路开启", "救赎路线", "讨伐路线", "实验体救援", "第二实验场", "逆星残火", "十三的选择", "观星者现身"]}, {"title": "深渊星会", "area": "大陆联盟据点", "theme": "深渊星会与人造魂王军团", "mood": "联盟旗帜、密会、战报和无人承认的恐惧", "pressure": "反派终于从影子里走出来，战争也不再只是七怪的事", "figure": "观星者", "image": "地图上的红点一夜之间多得像溅开的血", "count": 10, "events": ["观星者宣告", "深渊星会成立", "人造魂王军团", "联盟会议", "武魂殿态度", "七怪分工", "星纹城市", "第一次正面冲突", "星会压境", "第一次正面战争"]}, {"title": "星会反击", "area": "史莱克联盟营地", "theme": "暗杀、内鬼与十三被捕", "mood": "夜袭、断灯、伪装成同伴的敌人", "pressure": "敌人开始学会针对你们的善意", "figure": "星会使徒", "image": "营地里的灯一盏接一盏熄灭", "count": 10, "events": ["联盟后的暗杀", "营地夜袭", "伪装者", "十三被盯上", "内鬼线索", "星会反扑", "七怪护送", "十三被捕", "使徒档案", "反击开始"]}, {"title": "史莱克反击战", "area": "星纹工坊与阵法城", "theme": "多线反击与使徒决战", "mood": "工坊铁火、阵法城墙、反击号角", "pressure": "这一次你们不能只赢，还要救回被拿来当材料的人", "figure": "镜鸦、骨灯、星棘", "image": "星纹工坊的烟囱吐出蓝白色的火", "count": 10, "events": ["反击会议", "工坊潜入", "镜鸦追踪", "骨灯诅咒", "星棘阵法城", "回光铃修复", "七怪多线作战", "十三营救", "星会工坊崩塌", "反击战第一胜"]}, {"title": "星使降临", "area": "星命轮塔", "theme": "星使、自由变量与神性容器", "mood": "塔顶星光、机械轮盘、被编号的人", "pressure": "完成品越像人，观星者的理论越站不住脚", "figure": "星使", "image": "星命轮缓慢转动，像一只不会闭上的眼睛", "count": 10, "events": ["完成品", "星使登场", "自由变量", "星命轮机制", "星使试炼", "星使的犹豫", "七怪与星使", "神性承载计划", "自由变量战术", "星使叛变或进化"]}, {"title": "神性承载", "area": "神性实验场", "theme": "神性残响与自由核心样本", "mood": "金纹、低语、被标记的名字", "pressure": "你第一次意识到，自己不是旁观者，而是他们想要的答案", "figure": "神性承载者", "image": "实验场中央的金色纹路像太阳的伤口", "count": 10, "events": ["神性残响", "玩家样本标记", "神级武魂档案", "观星者旧影", "星轮碎片", "神性实验场", "七怪样本危机", "自由样本捕获计划", "半成品承载者", "神性承载结算"]}, {"title": "神性危机", "area": "荒原污染区", "theme": "玩家神性残痕与七怪保护协议", "mood": "荒原金雾、掌心金纹、梦境里的旧神", "pressure": "力量在救你，也在改写你", "figure": "无名神影", "image": "荒原上的草叶被金色雾气压得直不起身", "count": 10, "events": ["掌心的金纹", "神性梦境", "荒原污染", "武魂神谕", "七怪保护协议", "神性试炼", "自由核心样本捕获", "神性残痕选择", "七怪守夜", "玩家选择"]}, {"title": "自由样本", "area": "深渊样本室", "theme": "捕获、营救与自由样本反噬", "mood": "牢门、编号、玻璃后的呼吸", "pressure": "他们想证明自由也可以被复制，你必须证明自由不能被关住", "figure": "样本管理员", "image": "样本室的玻璃映出很多个不像自己的你", "count": 10, "events": ["捕获失败后的沉默", "第二次捕获", "样本室苏醒", "七怪弱点标记", "自由样本档案", "深渊核心区", "七怪营救", "自由样本反噬", "观星者停手一瞬", "自由样本反噬结算"]}, {"title": "武魂殿神谕", "area": "武魂殿审判庭", "theme": "审判、监管与三方对峙", "mood": "白石大厅、神谕卷轴、旧敌重逢", "pressure": "当审判披上神谕的外衣，反抗就会被说成亵渎", "figure": "武魂殿审判官", "image": "审判庭穹顶上的光冷得不像阳光", "count": 10, "events": ["神谕降临", "监管令", "审判庭传召", "黄金一代再会", "武魂殿内部分歧", "硬派主张", "神谕档案", "玩家辩证", "三方试探", "三方对峙"]}, {"title": "神殿试炼", "area": "无名神殿", "theme": "欲望、牺牲、孤独与信仰试炼", "mood": "无名石阶、回声、看不见尽头的门", "pressure": "神殿不会问你强不强，只问你愿意失去什么", "figure": "神殿残响", "image": "无名神殿的门没有纹章，只有被手掌磨亮的石面", "count": 10, "events": ["古代神殿坐标", "踏入无名神殿", "欲望试炼", "牺牲试炼", "孤独试炼", "信仰试炼", "神性路线抉择", "观星者进入", "神殿真相", "神殿真正的主人"]}, {"title": "观星者真身", "area": "旧神殿记忆", "theme": "陆观辰、叶清微与理念决战", "mood": "旧日回廊、死去的同伴、迟来的名字", "pressure": "你终于看见，怪物并非生来怪物，有些人是被失去推下去的", "figure": "陆观辰", "image": "记忆里的神殿没有灰尘，只有来不及说完的话", "count": 10, "events": ["被否定的人", "陆观辰之名", "七人同行", "一人归来", "叶清微残响", "神殿惨剧", "第一次实验", "理念决战", "观星者真身战", "观星者破防"]}, {"title": "深渊星会总攻", "area": "大陆战线", "theme": "全面战争与神性核心开启", "mood": "烽火、战线、七怪奔赴不同方向", "pressure": "所有铺垫在这一刻变成战争，没有谁还能置身事外", "figure": "深渊星会军团", "image": "大陆地图上的战线像一道被撕开的伤口", "count": 10, "events": ["总攻前夜", "大陆动员", "人造魂师军团", "逆星七子赎罪", "星使对星使", "神性核心开启", "青石镇危机", "武魂殿战线", "七怪合流", "全面总攻"]}, {"title": "神性战争", "area": "金潮污染区", "theme": "神性污染、觉醒与七怪神性组合技", "mood": "金潮、失控承载者、人造魂师醒来的眼睛", "pressure": "真正的战争不是杀死敌人，而是在污染里保住人的名字", "figure": "失控承载者", "image": "金潮从地平线涌来，像一场反方向升起的日出", "count": 10, "events": ["神性污染扩散", "人造魂师觉醒", "武魂殿硬派冲突", "失控承载者", "七怪神性组合技", "救援线推进", "星使回援", "逆星赎罪", "污染临界", "神性战争落幕"]}, {"title": "七怪封号", "area": "封号试炼之地", "theme": "封号、武魂蜕变与终局准备", "mood": "试炼石碑、魂环光轮、少年终于长成大人", "pressure": "封号不是荣耀，而是你愿意用一生承担的名字", "figure": "七怪各自的影子", "image": "试炼石碑上的名字一个接一个亮起", "count": 10, "events": ["战后清点", "封号之路", "玩家武魂最终蜕变", "魂环魂骨整理", "称号试炼", "七怪各自封号", "黄金一代终局挑战", "终局阵容", "最后训练", "七怪封号完成"]}, {"title": "终局：神性承载", "area": "星盘世界", "theme": "最终实验与神性承载选择", "mood": "星盘、无数可能、被排列的命运", "pressure": "观星者要用世界证明人不能自由，你要用自己证明他错了", "figure": "观星者最终形态", "image": "星盘世界里每一颗星都像一只注视你的眼睛", "count": 10, "events": ["终局动员", "核心开启", "最终实验", "终端领域", "神性核心", "自由样本与容器军团", "星盘世界", "最终承载选择", "星盘崩塌", "终局落幕"]}, {"title": "怪物成神", "area": "新的大陆", "theme": "最终战、陆观辰选择与新世界", "mood": "崩塌后的黎明、旧敌的沉默、新大陆的海风", "pressure": "故事必须结束，但结束之后的人生才真正开始", "figure": "陆观辰与七怪", "image": "第一缕晨光落在新大陆的海面上", "count": 10, "events": ["最终战开始", "观星者最终形态", "人类不是容器", "怪物成神式", "陆观辰最后选择", "神性最终归宿", "深渊星会覆灭", "史莱克七怪终章", "新的大陆", "尾声"]}];
+const CHAPTERS=[{"no": 1, "volume": 0, "index": 0, "title": "武魂觉醒", "area": "青石村", "volTitle": "武魂初醒"}, {"no": 2, "volume": 0, "index": 1, "title": "村口冲突", "area": "青石村", "volTitle": "武魂初醒"}, {"no": 3, "volume": 0, "index": 2, "title": "后山夜训", "area": "青石村", "volTitle": "武魂初醒"}, {"no": 4, "volume": 0, "index": 3, "title": "魂力初潮", "area": "青石村", "volTitle": "武魂初醒"}, {"no": 5, "volume": 0, "index": 4, "title": "旧物线索", "area": "青石村", "volTitle": "武魂初醒"}, {"no": 6, "volume": 0, "index": 5, "title": "猎魂小队", "area": "青石村", "volTitle": "武魂初醒"}, {"no": 7, "volume": 0, "index": 6, "title": "第一魂环", "area": "青石村", "volTitle": "武魂初醒"}, {"no": 8, "volume": 0, "index": 7, "title": "通往索托的风", "area": "青石村", "volTitle": "武魂初醒"}, {"no": 9, "volume": 1, "index": 0, "title": "离开青石村", "area": "索托城", "volTitle": "通往史莱克"}, {"no": 10, "volume": 1, "index": 1, "title": "索托城灯火", "area": "索托城", "volTitle": "通往史莱克"}, {"no": 11, "volume": 1, "index": 2, "title": "大斗魂场初闻", "area": "索托城", "volTitle": "通往史莱克"}, {"no": 12, "volume": 1, "index": 3, "title": "史莱克报名", "area": "索托城", "volTitle": "通往史莱克"}, {"no": 13, "volume": 1, "index": 4, "title": "第一关测试", "area": "索托城", "volTitle": "通往史莱克"}, {"no": 14, "volume": 1, "index": 5, "title": "门前冲突", "area": "索托城", "volTitle": "通往史莱克"}, {"no": 15, "volume": 1, "index": 6, "title": "赵无极压力", "area": "索托城", "volTitle": "通往史莱克"}, {"no": 16, "volume": 1, "index": 7, "title": "怪物入学", "area": "索托城", "volTitle": "通往史莱克"}, {"no": 17, "volume": 2, "index": 0, "title": "破旧学院", "area": "史莱克学院", "volTitle": "怪物学院"}, {"no": 18, "volume": 2, "index": 1, "title": "新生宿舍", "area": "史莱克学院", "volTitle": "怪物学院"}, {"no": 19, "volume": 2, "index": 2, "title": "怪物们第一次见面", "area": "史莱克学院", "volTitle": "怪物学院"}, {"no": 20, "volume": 2, "index": 3, "title": "弗兰德第一堂课", "area": "史莱克学院", "volTitle": "怪物学院"}, {"no": 21, "volume": 2, "index": 4, "title": "大师武魂理论", "area": "史莱克学院", "volTitle": "怪物学院"}, {"no": 22, "volume": 2, "index": 5, "title": "赵无极抗压训练", "area": "史莱克学院", "volTitle": "怪物学院"}, {"no": 23, "volume": 2, "index": 6, "title": "七怪候选排名", "area": "史莱克学院", "volTitle": "怪物学院"}, {"no": 24, "volume": 2, "index": 7, "title": "第一次团队训练", "area": "史莱克学院", "volTitle": "怪物学院"}, {"no": 25, "volume": 2, "index": 8, "title": "内部矛盾", "area": "史莱克学院", "volTitle": "怪物学院"}, {"no": 26, "volume": 2, "index": 9, "title": "七怪正式成立", "area": "史莱克学院", "volTitle": "怪物学院"}, {"no": 27, "volume": 3, "index": 0, "title": "七怪第一次集合", "area": "索托大斗魂场", "volTitle": "斗魂扬名"}, {"no": 28, "volume": 3, "index": 1, "title": "斗魂场注册", "area": "索托大斗魂场", "volTitle": "斗魂扬名"}, {"no": 29, "volume": 3, "index": 2, "title": "第一场七人团战", "area": "索托大斗魂场", "volTitle": "斗魂扬名"}, {"no": 30, "volume": 3, "index": 3, "title": "战术磨合", "area": "索托大斗魂场", "volTitle": "斗魂扬名"}, {"no": 31, "volume": 3, "index": 4, "title": "连胜之始", "area": "索托大斗魂场", "volTitle": "斗魂扬名"}, {"no": 32, "volume": 3, "index": 5, "title": "队友支线开启", "area": "索托大斗魂场", "volTitle": "斗魂扬名"}, {"no": 33, "volume": 3, "index": 6, "title": "强敌战队登场", "area": "索托大斗魂场", "volTitle": "斗魂扬名"}, {"no": 34, "volume": 3, "index": 7, "title": "组合技突破", "area": "索托大斗魂场", "volTitle": "斗魂扬名"}, {"no": 35, "volume": 3, "index": 8, "title": "十连胜之夜", "area": "索托大斗魂场", "volTitle": "斗魂扬名"}, {"no": 36, "volume": 3, "index": 9, "title": "扬名索托城", "area": "索托大斗魂场", "volTitle": "斗魂扬名"}, {"no": 37, "volume": 4, "index": 0, "title": "十连胜后的代价", "area": "史莱克学院与魂兽森林", "volTitle": "七怪特训"}, {"no": 38, "volume": 4, "index": 1, "title": "大师的极限训练", "area": "史莱克学院与魂兽森林", "volTitle": "七怪特训"}, {"no": 39, "volume": 4, "index": 2, "title": "全大陆精英魂师大赛", "area": "史莱克学院与魂兽森林", "volTitle": "七怪特训"}, {"no": 40, "volume": 4, "index": 3, "title": "武魂殿黄金一代", "area": "史莱克学院与魂兽森林", "volTitle": "七怪特训"}, {"no": 41, "volume": 4, "index": 4, "title": "魂环规划", "area": "史莱克学院与魂兽森林", "volTitle": "七怪特训"}, {"no": 42, "volume": 4, "index": 5, "title": "再入魂兽森林", "area": "史莱克学院与魂兽森林", "volTitle": "七怪特训"}, {"no": 43, "volume": 4, "index": 6, "title": "队友个人支线深入", "area": "史莱克学院与魂兽森林", "volTitle": "七怪特训"}, {"no": 44, "volume": 4, "index": 7, "title": "七怪分组特训", "area": "史莱克学院与魂兽森林", "volTitle": "七怪特训"}, {"no": 45, "volume": 4, "index": 8, "title": "组合技进阶", "area": "史莱克学院与魂兽森林", "volTitle": "七怪特训"}, {"no": 46, "volume": 4, "index": 9, "title": "大赛邀请", "area": "史莱克学院与魂兽森林", "volTitle": "七怪特训"}, {"no": 47, "volume": 5, "index": 0, "title": "天斗赛区", "area": "天斗赛区", "volTitle": "大赛预选"}, {"no": 48, "volume": 5, "index": 1, "title": "开幕式", "area": "天斗赛区", "volTitle": "大赛预选"}, {"no": 49, "volume": 5, "index": 2, "title": "青藤学院预选战", "area": "天斗赛区", "volTitle": "大赛预选"}, {"no": 50, "volume": 5, "index": 3, "title": "连续预选战", "area": "天斗赛区", "volTitle": "大赛预选"}, {"no": 51, "volume": 5, "index": 4, "title": "被针对的一战", "area": "天斗赛区", "volTitle": "大赛预选"}, {"no": 52, "volume": 5, "index": 5, "title": "预选关键战", "area": "天斗赛区", "volTitle": "大赛预选"}, {"no": 53, "volume": 5, "index": 6, "title": "元素学院登场", "area": "天斗赛区", "volTitle": "大赛预选"}, {"no": 54, "volume": 5, "index": 7, "title": "天水学院之战", "area": "天斗赛区", "volTitle": "大赛预选"}, {"no": 55, "volume": 5, "index": 8, "title": "炽火神风雷霆", "area": "天斗赛区", "volTitle": "大赛预选"}, {"no": 56, "volume": 5, "index": 9, "title": "史莱克出线", "area": "天斗赛区", "volTitle": "大赛预选"}, {"no": 57, "volume": 6, "index": 0, "title": "晋级赛规则", "area": "天斗帝国军营", "volTitle": "晋级赛"}, {"no": 58, "volume": 6, "index": 1, "title": "第一轮点名", "area": "天斗帝国军营", "volTitle": "晋级赛"}, {"no": 59, "volume": 6, "index": 2, "title": "单人守擂", "area": "天斗帝国军营", "volTitle": "晋级赛"}, {"no": 60, "volume": 6, "index": 3, "title": "伙伴的底牌", "area": "天斗帝国军营", "volTitle": "晋级赛"}, {"no": 61, "volume": 6, "index": 4, "title": "被研究的弱点", "area": "天斗帝国军营", "volTitle": "晋级赛"}, {"no": 62, "volume": 6, "index": 5, "title": "天水再会", "area": "天斗帝国军营", "volTitle": "晋级赛"}, {"no": 63, "volume": 6, "index": 6, "title": "炽火再燃", "area": "天斗帝国军营", "volTitle": "晋级赛"}, {"no": 64, "volume": 6, "index": 7, "title": "神风压场", "area": "天斗帝国军营", "volTitle": "晋级赛"}, {"no": 65, "volume": 6, "index": 8, "title": "雷霆最终战", "area": "天斗帝国军营", "volTitle": "晋级赛"}, {"no": 66, "volume": 6, "index": 9, "title": "前往总决赛", "area": "天斗帝国军营", "volTitle": "晋级赛"}, {"no": 67, "volume": 7, "index": 0, "title": "抵达武魂城", "area": "武魂城", "volTitle": "总决赛前夜"}, {"no": 68, "volume": 7, "index": 1, "title": "城门下的审视", "area": "武魂城", "volTitle": "总决赛前夜"}, {"no": 69, "volume": 7, "index": 2, "title": "黄金一代档案", "area": "武魂城", "volTitle": "总决赛前夜"}, {"no": 70, "volume": 7, "index": 3, "title": "夜谈与约定", "area": "武魂城", "volTitle": "总决赛前夜"}, {"no": 71, "volume": 7, "index": 4, "title": "武魂殿试探", "area": "武魂城", "volTitle": "总决赛前夜"}, {"no": 72, "volume": 7, "index": 5, "title": "最后一次排兵", "area": "武魂城", "volTitle": "总决赛前夜"}, {"no": 73, "volume": 7, "index": 6, "title": "总决赛抽签", "area": "武魂城", "volTitle": "总决赛前夜"}, {"no": 74, "volume": 7, "index": 7, "title": "对手的压迫感", "area": "武魂城", "volTitle": "总决赛前夜"}, {"no": 75, "volume": 7, "index": 8, "title": "七怪誓言", "area": "武魂城", "volTitle": "总决赛前夜"}, {"no": 76, "volume": 7, "index": 9, "title": "总决赛开幕", "area": "武魂城", "volTitle": "总决赛前夜"}, {"no": 77, "volume": 8, "index": 0, "title": "黄金一代登场", "area": "武魂城斗魂台", "volTitle": "黄金决战"}, {"no": 78, "volume": 8, "index": 1, "title": "第一轮鏖战", "area": "武魂城斗魂台", "volTitle": "黄金决战"}, {"no": 79, "volume": 8, "index": 2, "title": "控制与反控制", "area": "武魂城斗魂台", "volTitle": "黄金决战"}, {"no": 80, "volume": 8, "index": 3, "title": "辅助线的危机", "area": "武魂城斗魂台", "volTitle": "黄金决战"}, {"no": 81, "volume": 8, "index": 4, "title": "核心被锁定", "area": "武魂城斗魂台", "volTitle": "黄金决战"}, {"no": 82, "volume": 8, "index": 5, "title": "七怪反击", "area": "武魂城斗魂台", "volTitle": "黄金决战"}, {"no": 83, "volume": 8, "index": 6, "title": "终局组合技", "area": "武魂城斗魂台", "volTitle": "黄金决战"}, {"no": 84, "volume": 8, "index": 7, "title": "黄金一代压境", "area": "武魂城斗魂台", "volTitle": "黄金决战"}, {"no": 85, "volume": 8, "index": 8, "title": "最后一击", "area": "武魂城斗魂台", "volTitle": "黄金决战"}, {"no": 86, "volume": 8, "index": 9, "title": "黄金决战落幕", "area": "武魂城斗魂台", "volTitle": "黄金决战"}, {"no": 87, "volume": 9, "index": 0, "title": "大赛之后", "area": "大陆诸城", "volTitle": "大陆风云"}, {"no": 88, "volume": 9, "index": 1, "title": "各方势力的目光", "area": "大陆诸城", "volTitle": "大陆风云"}, {"no": 89, "volume": 9, "index": 2, "title": "武魂殿暗流", "area": "大陆诸城", "volTitle": "大陆风云"}, {"no": 90, "volume": 9, "index": 3, "title": "宗门邀请", "area": "大陆诸城", "volTitle": "大陆风云"}, {"no": 91, "volume": 9, "index": 4, "title": "家乡来信", "area": "大陆诸城", "volTitle": "大陆风云"}, {"no": 92, "volume": 9, "index": 5, "title": "七怪短别", "area": "大陆诸城", "volTitle": "大陆风云"}, {"no": 93, "volume": 9, "index": 6, "title": "三年之约", "area": "大陆诸城", "volTitle": "大陆风云"}, {"no": 94, "volume": 9, "index": 7, "title": "个人路线抉择", "area": "大陆诸城", "volTitle": "大陆风云"}, {"no": 95, "volume": 9, "index": 8, "title": "远行前夜", "area": "大陆诸城", "volTitle": "大陆风云"}, {"no": 96, "volume": 9, "index": 9, "title": "各自成长线开启", "area": "大陆诸城", "volTitle": "大陆风云"}, {"no": 97, "volume": 10, "index": 0, "title": "新的道路", "area": "大陆游历路线", "volTitle": "三年成长"}, {"no": 98, "volume": 10, "index": 1, "title": "第一年危机", "area": "大陆游历路线", "volTitle": "三年成长"}, {"no": 99, "volume": 10, "index": 2, "title": "陌生城镇", "area": "大陆游历路线", "volTitle": "三年成长"}, {"no": 100, "volume": 10, "index": 3, "title": "魂兽森林深处", "area": "大陆游历路线", "volTitle": "三年成长"}, {"no": 101, "volume": 10, "index": 4, "title": "宗门边境", "area": "大陆游历路线", "volTitle": "三年成长"}, {"no": 102, "volume": 10, "index": 5, "title": "黑市传闻", "area": "大陆游历路线", "volTitle": "三年成长"}, {"no": 103, "volume": 10, "index": 6, "title": "武魂进化契机", "area": "大陆游历路线", "volTitle": "三年成长"}, {"no": 104, "volume": 10, "index": 7, "title": "第二年冬雪", "area": "大陆游历路线", "volTitle": "三年成长"}, {"no": 105, "volume": 10, "index": 8, "title": "第三年归信", "area": "大陆游历路线", "volTitle": "三年成长"}, {"no": 106, "volume": 10, "index": 9, "title": "史莱克重聚", "area": "大陆游历路线", "volTitle": "三年成长"}, {"no": 107, "volume": 11, "index": 0, "title": "三年后的七怪", "area": "史莱克旧址", "volTitle": "七怪重聚"}, {"no": 108, "volume": 11, "index": 1, "title": "迟到的人", "area": "史莱克旧址", "volTitle": "七怪重聚"}, {"no": 109, "volume": 11, "index": 2, "title": "队友求援", "area": "史莱克旧址", "volTitle": "七怪重聚"}, {"no": 110, "volume": 11, "index": 3, "title": "重建组合技", "area": "史莱克旧址", "volTitle": "七怪重聚"}, {"no": 111, "volume": 11, "index": 4, "title": "旧日裂痕", "area": "史莱克旧址", "volTitle": "七怪重聚"}, {"no": 112, "volume": 11, "index": 5, "title": "逆星传闻", "area": "史莱克旧址", "volTitle": "七怪重聚"}, {"no": 113, "volume": 11, "index": 6, "title": "七怪新定位", "area": "史莱克旧址", "volTitle": "七怪重聚"}, {"no": 114, "volume": 11, "index": 7, "title": "雨夜来客", "area": "史莱克旧址", "volTitle": "七怪重聚"}, {"no": 115, "volume": 11, "index": 8, "title": "逆星七子影子", "area": "史莱克旧址", "volTitle": "七怪重聚"}, {"no": 116, "volume": 11, "index": 9, "title": "七怪再出发", "area": "史莱克旧址", "volTitle": "七怪重聚"}, {"no": 117, "volume": 12, "index": 0, "title": "雨夜挑战", "area": "雨夜古道与黑石峡谷", "volTitle": "逆星来袭"}, {"no": 118, "volume": 12, "index": 1, "title": "星陨枪试探", "area": "雨夜古道与黑石峡谷", "volTitle": "逆星来袭"}, {"no": 119, "volume": 12, "index": 2, "title": "罗刹音精神污染", "area": "雨夜古道与黑石峡谷", "volTitle": "逆星来袭"}, {"no": 120, "volume": 12, "index": 3, "title": "七怪新组合技", "area": "雨夜古道与黑石峡谷", "volTitle": "逆星来袭"}, {"no": 121, "volume": 12, "index": 4, "title": "黑石峡谷", "area": "雨夜古道与黑石峡谷", "volTitle": "逆星来袭"}, {"no": 122, "volume": 12, "index": 5, "title": "禁忌魂师计划", "area": "雨夜古道与黑石峡谷", "volTitle": "逆星来袭"}, {"no": 123, "volume": 12, "index": 6, "title": "编号十三", "area": "雨夜古道与黑石峡谷", "volTitle": "逆星来袭"}, {"no": 124, "volume": 12, "index": 7, "title": "逆星邀请", "area": "雨夜古道与黑石峡谷", "volTitle": "逆星来袭"}, {"no": 125, "volume": 12, "index": 8, "title": "武魂殿禁档", "area": "雨夜古道与黑石峡谷", "volTitle": "逆星来袭"}, {"no": 126, "volume": 12, "index": 9, "title": "追踪逆星", "area": "雨夜古道与黑石峡谷", "volTitle": "逆星来袭"}, {"no": 127, "volume": 13, "index": 0, "title": "倒悬星纹", "area": "深渊实验场", "volTitle": "深渊星纹"}, {"no": 128, "volume": 13, "index": 1, "title": "星纹污染", "area": "深渊实验场", "volTitle": "深渊星纹"}, {"no": 129, "volume": 13, "index": 2, "title": "实验体名单", "area": "深渊实验场", "volTitle": "深渊星纹"}, {"no": 130, "volume": 13, "index": 3, "title": "第一实验场", "area": "深渊实验场", "volTitle": "深渊星纹"}, {"no": 131, "volume": 13, "index": 4, "title": "十三的记忆", "area": "深渊实验场", "volTitle": "深渊星纹"}, {"no": 132, "volume": 13, "index": 5, "title": "深渊档案", "area": "深渊实验场", "volTitle": "深渊星纹"}, {"no": 133, "volume": 13, "index": 6, "title": "七怪分路潜入", "area": "深渊实验场", "volTitle": "深渊星纹"}, {"no": 134, "volume": 13, "index": 7, "title": "星纹核心", "area": "深渊实验场", "volTitle": "深渊星纹"}, {"no": 135, "volume": 13, "index": 8, "title": "观星者的影子", "area": "深渊实验场", "volTitle": "深渊星纹"}, {"no": 136, "volume": 13, "index": 9, "title": "史莱克的决定", "area": "深渊实验场", "volTitle": "深渊星纹"}, {"no": 137, "volume": 14, "index": 0, "title": "三路开启", "area": "深渊边境", "volTitle": "深渊三路"}, {"no": 138, "volume": 14, "index": 1, "title": "救赎路线", "area": "深渊边境", "volTitle": "深渊三路"}, {"no": 139, "volume": 14, "index": 2, "title": "讨伐路线", "area": "深渊边境", "volTitle": "深渊三路"}, {"no": 140, "volume": 14, "index": 3, "title": "实验体救援", "area": "深渊边境", "volTitle": "深渊三路"}, {"no": 141, "volume": 14, "index": 4, "title": "第二实验场", "area": "深渊边境", "volTitle": "深渊三路"}, {"no": 142, "volume": 14, "index": 5, "title": "逆星残火", "area": "深渊边境", "volTitle": "深渊三路"}, {"no": 143, "volume": 14, "index": 6, "title": "十三的选择", "area": "深渊边境", "volTitle": "深渊三路"}, {"no": 144, "volume": 14, "index": 7, "title": "观星者现身", "area": "深渊边境", "volTitle": "深渊三路"}, {"no": 145, "volume": 15, "index": 0, "title": "观星者宣告", "area": "大陆联盟据点", "volTitle": "深渊星会"}, {"no": 146, "volume": 15, "index": 1, "title": "深渊星会成立", "area": "大陆联盟据点", "volTitle": "深渊星会"}, {"no": 147, "volume": 15, "index": 2, "title": "人造魂王军团", "area": "大陆联盟据点", "volTitle": "深渊星会"}, {"no": 148, "volume": 15, "index": 3, "title": "联盟会议", "area": "大陆联盟据点", "volTitle": "深渊星会"}, {"no": 149, "volume": 15, "index": 4, "title": "武魂殿态度", "area": "大陆联盟据点", "volTitle": "深渊星会"}, {"no": 150, "volume": 15, "index": 5, "title": "七怪分工", "area": "大陆联盟据点", "volTitle": "深渊星会"}, {"no": 151, "volume": 15, "index": 6, "title": "星纹城市", "area": "大陆联盟据点", "volTitle": "深渊星会"}, {"no": 152, "volume": 15, "index": 7, "title": "第一次正面冲突", "area": "大陆联盟据点", "volTitle": "深渊星会"}, {"no": 153, "volume": 15, "index": 8, "title": "星会压境", "area": "大陆联盟据点", "volTitle": "深渊星会"}, {"no": 154, "volume": 15, "index": 9, "title": "第一次正面战争", "area": "大陆联盟据点", "volTitle": "深渊星会"}, {"no": 155, "volume": 16, "index": 0, "title": "联盟后的暗杀", "area": "史莱克联盟营地", "volTitle": "星会反击"}, {"no": 156, "volume": 16, "index": 1, "title": "营地夜袭", "area": "史莱克联盟营地", "volTitle": "星会反击"}, {"no": 157, "volume": 16, "index": 2, "title": "伪装者", "area": "史莱克联盟营地", "volTitle": "星会反击"}, {"no": 158, "volume": 16, "index": 3, "title": "十三被盯上", "area": "史莱克联盟营地", "volTitle": "星会反击"}, {"no": 159, "volume": 16, "index": 4, "title": "内鬼线索", "area": "史莱克联盟营地", "volTitle": "星会反击"}, {"no": 160, "volume": 16, "index": 5, "title": "星会反扑", "area": "史莱克联盟营地", "volTitle": "星会反击"}, {"no": 161, "volume": 16, "index": 6, "title": "七怪护送", "area": "史莱克联盟营地", "volTitle": "星会反击"}, {"no": 162, "volume": 16, "index": 7, "title": "十三被捕", "area": "史莱克联盟营地", "volTitle": "星会反击"}, {"no": 163, "volume": 16, "index": 8, "title": "使徒档案", "area": "史莱克联盟营地", "volTitle": "星会反击"}, {"no": 164, "volume": 16, "index": 9, "title": "反击开始", "area": "史莱克联盟营地", "volTitle": "星会反击"}, {"no": 165, "volume": 17, "index": 0, "title": "反击会议", "area": "星纹工坊与阵法城", "volTitle": "史莱克反击战"}, {"no": 166, "volume": 17, "index": 1, "title": "工坊潜入", "area": "星纹工坊与阵法城", "volTitle": "史莱克反击战"}, {"no": 167, "volume": 17, "index": 2, "title": "镜鸦追踪", "area": "星纹工坊与阵法城", "volTitle": "史莱克反击战"}, {"no": 168, "volume": 17, "index": 3, "title": "骨灯诅咒", "area": "星纹工坊与阵法城", "volTitle": "史莱克反击战"}, {"no": 169, "volume": 17, "index": 4, "title": "星棘阵法城", "area": "星纹工坊与阵法城", "volTitle": "史莱克反击战"}, {"no": 170, "volume": 17, "index": 5, "title": "回光铃修复", "area": "星纹工坊与阵法城", "volTitle": "史莱克反击战"}, {"no": 171, "volume": 17, "index": 6, "title": "七怪多线作战", "area": "星纹工坊与阵法城", "volTitle": "史莱克反击战"}, {"no": 172, "volume": 17, "index": 7, "title": "十三营救", "area": "星纹工坊与阵法城", "volTitle": "史莱克反击战"}, {"no": 173, "volume": 17, "index": 8, "title": "星会工坊崩塌", "area": "星纹工坊与阵法城", "volTitle": "史莱克反击战"}, {"no": 174, "volume": 17, "index": 9, "title": "反击战第一胜", "area": "星纹工坊与阵法城", "volTitle": "史莱克反击战"}, {"no": 175, "volume": 18, "index": 0, "title": "完成品", "area": "星命轮塔", "volTitle": "星使降临"}, {"no": 176, "volume": 18, "index": 1, "title": "星使登场", "area": "星命轮塔", "volTitle": "星使降临"}, {"no": 177, "volume": 18, "index": 2, "title": "自由变量", "area": "星命轮塔", "volTitle": "星使降临"}, {"no": 178, "volume": 18, "index": 3, "title": "星命轮机制", "area": "星命轮塔", "volTitle": "星使降临"}, {"no": 179, "volume": 18, "index": 4, "title": "星使试炼", "area": "星命轮塔", "volTitle": "星使降临"}, {"no": 180, "volume": 18, "index": 5, "title": "星使的犹豫", "area": "星命轮塔", "volTitle": "星使降临"}, {"no": 181, "volume": 18, "index": 6, "title": "七怪与星使", "area": "星命轮塔", "volTitle": "星使降临"}, {"no": 182, "volume": 18, "index": 7, "title": "神性承载计划", "area": "星命轮塔", "volTitle": "星使降临"}, {"no": 183, "volume": 18, "index": 8, "title": "自由变量战术", "area": "星命轮塔", "volTitle": "星使降临"}, {"no": 184, "volume": 18, "index": 9, "title": "星使叛变或进化", "area": "星命轮塔", "volTitle": "星使降临"}, {"no": 185, "volume": 19, "index": 0, "title": "神性残响", "area": "神性实验场", "volTitle": "神性承载"}, {"no": 186, "volume": 19, "index": 1, "title": "玩家样本标记", "area": "神性实验场", "volTitle": "神性承载"}, {"no": 187, "volume": 19, "index": 2, "title": "神级武魂档案", "area": "神性实验场", "volTitle": "神性承载"}, {"no": 188, "volume": 19, "index": 3, "title": "观星者旧影", "area": "神性实验场", "volTitle": "神性承载"}, {"no": 189, "volume": 19, "index": 4, "title": "星轮碎片", "area": "神性实验场", "volTitle": "神性承载"}, {"no": 190, "volume": 19, "index": 5, "title": "神性实验场", "area": "神性实验场", "volTitle": "神性承载"}, {"no": 191, "volume": 19, "index": 6, "title": "七怪样本危机", "area": "神性实验场", "volTitle": "神性承载"}, {"no": 192, "volume": 19, "index": 7, "title": "自由样本捕获计划", "area": "神性实验场", "volTitle": "神性承载"}, {"no": 193, "volume": 19, "index": 8, "title": "半成品承载者", "area": "神性实验场", "volTitle": "神性承载"}, {"no": 194, "volume": 19, "index": 9, "title": "神性承载结算", "area": "神性实验场", "volTitle": "神性承载"}, {"no": 195, "volume": 20, "index": 0, "title": "掌心的金纹", "area": "荒原污染区", "volTitle": "神性危机"}, {"no": 196, "volume": 20, "index": 1, "title": "神性梦境", "area": "荒原污染区", "volTitle": "神性危机"}, {"no": 197, "volume": 20, "index": 2, "title": "荒原污染", "area": "荒原污染区", "volTitle": "神性危机"}, {"no": 198, "volume": 20, "index": 3, "title": "武魂神谕", "area": "荒原污染区", "volTitle": "神性危机"}, {"no": 199, "volume": 20, "index": 4, "title": "七怪保护协议", "area": "荒原污染区", "volTitle": "神性危机"}, {"no": 200, "volume": 20, "index": 5, "title": "神性试炼", "area": "荒原污染区", "volTitle": "神性危机"}, {"no": 201, "volume": 20, "index": 6, "title": "自由核心样本捕获", "area": "荒原污染区", "volTitle": "神性危机"}, {"no": 202, "volume": 20, "index": 7, "title": "神性残痕选择", "area": "荒原污染区", "volTitle": "神性危机"}, {"no": 203, "volume": 20, "index": 8, "title": "七怪守夜", "area": "荒原污染区", "volTitle": "神性危机"}, {"no": 204, "volume": 20, "index": 9, "title": "玩家选择", "area": "荒原污染区", "volTitle": "神性危机"}, {"no": 205, "volume": 21, "index": 0, "title": "捕获失败后的沉默", "area": "深渊样本室", "volTitle": "自由样本"}, {"no": 206, "volume": 21, "index": 1, "title": "第二次捕获", "area": "深渊样本室", "volTitle": "自由样本"}, {"no": 207, "volume": 21, "index": 2, "title": "样本室苏醒", "area": "深渊样本室", "volTitle": "自由样本"}, {"no": 208, "volume": 21, "index": 3, "title": "七怪弱点标记", "area": "深渊样本室", "volTitle": "自由样本"}, {"no": 209, "volume": 21, "index": 4, "title": "自由样本档案", "area": "深渊样本室", "volTitle": "自由样本"}, {"no": 210, "volume": 21, "index": 5, "title": "深渊核心区", "area": "深渊样本室", "volTitle": "自由样本"}, {"no": 211, "volume": 21, "index": 6, "title": "七怪营救", "area": "深渊样本室", "volTitle": "自由样本"}, {"no": 212, "volume": 21, "index": 7, "title": "自由样本反噬", "area": "深渊样本室", "volTitle": "自由样本"}, {"no": 213, "volume": 21, "index": 8, "title": "观星者停手一瞬", "area": "深渊样本室", "volTitle": "自由样本"}, {"no": 214, "volume": 21, "index": 9, "title": "自由样本反噬结算", "area": "深渊样本室", "volTitle": "自由样本"}, {"no": 215, "volume": 22, "index": 0, "title": "神谕降临", "area": "武魂殿审判庭", "volTitle": "武魂殿神谕"}, {"no": 216, "volume": 22, "index": 1, "title": "监管令", "area": "武魂殿审判庭", "volTitle": "武魂殿神谕"}, {"no": 217, "volume": 22, "index": 2, "title": "审判庭传召", "area": "武魂殿审判庭", "volTitle": "武魂殿神谕"}, {"no": 218, "volume": 22, "index": 3, "title": "黄金一代再会", "area": "武魂殿审判庭", "volTitle": "武魂殿神谕"}, {"no": 219, "volume": 22, "index": 4, "title": "武魂殿内部分歧", "area": "武魂殿审判庭", "volTitle": "武魂殿神谕"}, {"no": 220, "volume": 22, "index": 5, "title": "硬派主张", "area": "武魂殿审判庭", "volTitle": "武魂殿神谕"}, {"no": 221, "volume": 22, "index": 6, "title": "神谕档案", "area": "武魂殿审判庭", "volTitle": "武魂殿神谕"}, {"no": 222, "volume": 22, "index": 7, "title": "玩家辩证", "area": "武魂殿审判庭", "volTitle": "武魂殿神谕"}, {"no": 223, "volume": 22, "index": 8, "title": "三方试探", "area": "武魂殿审判庭", "volTitle": "武魂殿神谕"}, {"no": 224, "volume": 22, "index": 9, "title": "三方对峙", "area": "武魂殿审判庭", "volTitle": "武魂殿神谕"}, {"no": 225, "volume": 23, "index": 0, "title": "古代神殿坐标", "area": "无名神殿", "volTitle": "神殿试炼"}, {"no": 226, "volume": 23, "index": 1, "title": "踏入无名神殿", "area": "无名神殿", "volTitle": "神殿试炼"}, {"no": 227, "volume": 23, "index": 2, "title": "欲望试炼", "area": "无名神殿", "volTitle": "神殿试炼"}, {"no": 228, "volume": 23, "index": 3, "title": "牺牲试炼", "area": "无名神殿", "volTitle": "神殿试炼"}, {"no": 229, "volume": 23, "index": 4, "title": "孤独试炼", "area": "无名神殿", "volTitle": "神殿试炼"}, {"no": 230, "volume": 23, "index": 5, "title": "信仰试炼", "area": "无名神殿", "volTitle": "神殿试炼"}, {"no": 231, "volume": 23, "index": 6, "title": "神性路线抉择", "area": "无名神殿", "volTitle": "神殿试炼"}, {"no": 232, "volume": 23, "index": 7, "title": "观星者进入", "area": "无名神殿", "volTitle": "神殿试炼"}, {"no": 233, "volume": 23, "index": 8, "title": "神殿真相", "area": "无名神殿", "volTitle": "神殿试炼"}, {"no": 234, "volume": 23, "index": 9, "title": "神殿真正的主人", "area": "无名神殿", "volTitle": "神殿试炼"}, {"no": 235, "volume": 24, "index": 0, "title": "被否定的人", "area": "旧神殿记忆", "volTitle": "观星者真身"}, {"no": 236, "volume": 24, "index": 1, "title": "陆观辰之名", "area": "旧神殿记忆", "volTitle": "观星者真身"}, {"no": 237, "volume": 24, "index": 2, "title": "七人同行", "area": "旧神殿记忆", "volTitle": "观星者真身"}, {"no": 238, "volume": 24, "index": 3, "title": "一人归来", "area": "旧神殿记忆", "volTitle": "观星者真身"}, {"no": 239, "volume": 24, "index": 4, "title": "叶清微残响", "area": "旧神殿记忆", "volTitle": "观星者真身"}, {"no": 240, "volume": 24, "index": 5, "title": "神殿惨剧", "area": "旧神殿记忆", "volTitle": "观星者真身"}, {"no": 241, "volume": 24, "index": 6, "title": "第一次实验", "area": "旧神殿记忆", "volTitle": "观星者真身"}, {"no": 242, "volume": 24, "index": 7, "title": "理念决战", "area": "旧神殿记忆", "volTitle": "观星者真身"}, {"no": 243, "volume": 24, "index": 8, "title": "观星者真身战", "area": "旧神殿记忆", "volTitle": "观星者真身"}, {"no": 244, "volume": 24, "index": 9, "title": "观星者破防", "area": "旧神殿记忆", "volTitle": "观星者真身"}, {"no": 245, "volume": 25, "index": 0, "title": "总攻前夜", "area": "大陆战线", "volTitle": "深渊星会总攻"}, {"no": 246, "volume": 25, "index": 1, "title": "大陆动员", "area": "大陆战线", "volTitle": "深渊星会总攻"}, {"no": 247, "volume": 25, "index": 2, "title": "人造魂师军团", "area": "大陆战线", "volTitle": "深渊星会总攻"}, {"no": 248, "volume": 25, "index": 3, "title": "逆星七子赎罪", "area": "大陆战线", "volTitle": "深渊星会总攻"}, {"no": 249, "volume": 25, "index": 4, "title": "星使对星使", "area": "大陆战线", "volTitle": "深渊星会总攻"}, {"no": 250, "volume": 25, "index": 5, "title": "神性核心开启", "area": "大陆战线", "volTitle": "深渊星会总攻"}, {"no": 251, "volume": 25, "index": 6, "title": "青石镇危机", "area": "大陆战线", "volTitle": "深渊星会总攻"}, {"no": 252, "volume": 25, "index": 7, "title": "武魂殿战线", "area": "大陆战线", "volTitle": "深渊星会总攻"}, {"no": 253, "volume": 25, "index": 8, "title": "七怪合流", "area": "大陆战线", "volTitle": "深渊星会总攻"}, {"no": 254, "volume": 25, "index": 9, "title": "全面总攻", "area": "大陆战线", "volTitle": "深渊星会总攻"}, {"no": 255, "volume": 26, "index": 0, "title": "神性污染扩散", "area": "金潮污染区", "volTitle": "神性战争"}, {"no": 256, "volume": 26, "index": 1, "title": "人造魂师觉醒", "area": "金潮污染区", "volTitle": "神性战争"}, {"no": 257, "volume": 26, "index": 2, "title": "武魂殿硬派冲突", "area": "金潮污染区", "volTitle": "神性战争"}, {"no": 258, "volume": 26, "index": 3, "title": "失控承载者", "area": "金潮污染区", "volTitle": "神性战争"}, {"no": 259, "volume": 26, "index": 4, "title": "七怪神性组合技", "area": "金潮污染区", "volTitle": "神性战争"}, {"no": 260, "volume": 26, "index": 5, "title": "救援线推进", "area": "金潮污染区", "volTitle": "神性战争"}, {"no": 261, "volume": 26, "index": 6, "title": "星使回援", "area": "金潮污染区", "volTitle": "神性战争"}, {"no": 262, "volume": 26, "index": 7, "title": "逆星赎罪", "area": "金潮污染区", "volTitle": "神性战争"}, {"no": 263, "volume": 26, "index": 8, "title": "污染临界", "area": "金潮污染区", "volTitle": "神性战争"}, {"no": 264, "volume": 26, "index": 9, "title": "神性战争落幕", "area": "金潮污染区", "volTitle": "神性战争"}, {"no": 265, "volume": 27, "index": 0, "title": "战后清点", "area": "封号试炼之地", "volTitle": "七怪封号"}, {"no": 266, "volume": 27, "index": 1, "title": "封号之路", "area": "封号试炼之地", "volTitle": "七怪封号"}, {"no": 267, "volume": 27, "index": 2, "title": "玩家武魂最终蜕变", "area": "封号试炼之地", "volTitle": "七怪封号"}, {"no": 268, "volume": 27, "index": 3, "title": "魂环魂骨整理", "area": "封号试炼之地", "volTitle": "七怪封号"}, {"no": 269, "volume": 27, "index": 4, "title": "称号试炼", "area": "封号试炼之地", "volTitle": "七怪封号"}, {"no": 270, "volume": 27, "index": 5, "title": "七怪各自封号", "area": "封号试炼之地", "volTitle": "七怪封号"}, {"no": 271, "volume": 27, "index": 6, "title": "黄金一代终局挑战", "area": "封号试炼之地", "volTitle": "七怪封号"}, {"no": 272, "volume": 27, "index": 7, "title": "终局阵容", "area": "封号试炼之地", "volTitle": "七怪封号"}, {"no": 273, "volume": 27, "index": 8, "title": "最后训练", "area": "封号试炼之地", "volTitle": "七怪封号"}, {"no": 274, "volume": 27, "index": 9, "title": "七怪封号完成", "area": "封号试炼之地", "volTitle": "七怪封号"}, {"no": 275, "volume": 28, "index": 0, "title": "终局动员", "area": "星盘世界", "volTitle": "终局：神性承载"}, {"no": 276, "volume": 28, "index": 1, "title": "核心开启", "area": "星盘世界", "volTitle": "终局：神性承载"}, {"no": 277, "volume": 28, "index": 2, "title": "最终实验", "area": "星盘世界", "volTitle": "终局：神性承载"}, {"no": 278, "volume": 28, "index": 3, "title": "终端领域", "area": "星盘世界", "volTitle": "终局：神性承载"}, {"no": 279, "volume": 28, "index": 4, "title": "神性核心", "area": "星盘世界", "volTitle": "终局：神性承载"}, {"no": 280, "volume": 28, "index": 5, "title": "自由样本与容器军团", "area": "星盘世界", "volTitle": "终局：神性承载"}, {"no": 281, "volume": 28, "index": 6, "title": "星盘世界", "area": "星盘世界", "volTitle": "终局：神性承载"}, {"no": 282, "volume": 28, "index": 7, "title": "最终承载选择", "area": "星盘世界", "volTitle": "终局：神性承载"}, {"no": 283, "volume": 28, "index": 8, "title": "星盘崩塌", "area": "星盘世界", "volTitle": "终局：神性承载"}, {"no": 284, "volume": 28, "index": 9, "title": "终局落幕", "area": "星盘世界", "volTitle": "终局：神性承载"}, {"no": 285, "volume": 29, "index": 0, "title": "最终战开始", "area": "新的大陆", "volTitle": "怪物成神"}, {"no": 286, "volume": 29, "index": 1, "title": "观星者最终形态", "area": "新的大陆", "volTitle": "怪物成神"}, {"no": 287, "volume": 29, "index": 2, "title": "人类不是容器", "area": "新的大陆", "volTitle": "怪物成神"}, {"no": 288, "volume": 29, "index": 3, "title": "怪物成神式", "area": "新的大陆", "volTitle": "怪物成神"}, {"no": 289, "volume": 29, "index": 4, "title": "陆观辰最后选择", "area": "新的大陆", "volTitle": "怪物成神"}, {"no": 290, "volume": 29, "index": 5, "title": "神性最终归宿", "area": "新的大陆", "volTitle": "怪物成神"}, {"no": 291, "volume": 29, "index": 6, "title": "深渊星会覆灭", "area": "新的大陆", "volTitle": "怪物成神"}, {"no": 292, "volume": 29, "index": 7, "title": "史莱克七怪终章", "area": "新的大陆", "volTitle": "怪物成神"}, {"no": 293, "volume": 29, "index": 8, "title": "新的大陆", "area": "新的大陆", "volTitle": "怪物成神"}, {"no": 294, "volume": 29, "index": 9, "title": "尾声", "area": "新的大陆", "volTitle": "怪物成神"}];
+const SCENE_LABELS=['题记','入章','暗流','人物','抉择','回响','收束'];
+const allies=['秦烈','夜无声','沈青萝','石岳','宁雪棠','墨知白','阿蛮'];
+const allyRoles=['强攻','敏攻','控制','防御','辅助','精神','特殊'];
+const routeNames={courage:'锋芒',wisdom:'谋略',bond:'羁绊',mercy:'救赎',abyss:'深渊',divinity:'神性',freedom:'自由'};
+const routeDesc={courage:'更倾向正面破局',wisdom:'更倾向冷静布局',bond:'更倾向伙伴同行',mercy:'更倾向给敌人回头的机会',abyss:'更愿意深入黑暗寻找真相',divinity:'更愿意直面神性代价',freedom:'更愿意反抗既定命运'};
+const chapterHooks={
+ 1:['觉醒石第一次亮起时，广场上的人声像潮水退下，只剩你自己的心跳。','那道光并不温柔，它像是在问：你敢不敢承认自己从此不同。'],
+ 8:['第一枚魂环落下时，森林深处有风穿过树冠，像替少年时代合上了第一页。','回望青石村，你忽然明白，离开不是背叛，是把所有不甘都带上路。'],
+ 16:['赵无极的魂压落下，地面细尘一圈圈震开。','史莱克的门从来不是给天才开的，而是给敢在压力里不退的人开的。'],
+ 26:['七个人站在同一片训练场上，影子被夕阳拉得很长。','你们还没有强到能赢下世界，但至少已经学会把背后交给彼此。'],
+ 36:['十连胜的欢呼涌上看台，却没有冲散你们身上的伤。','名声像火，照亮道路，也会把暗处的敌人引来。'],
+ 46:['大师把邀请函放在桌上，纸页边缘压着整间屋子的沉默。','全大陆精英魂师大赛，不再是远方传闻，而是少年们必须踏上的战场。'],
+ 86:['最后一击落下时，武魂城的风像停了一瞬。','你们赢下的不只是比赛，还有少年时代最锋利的一次证明。'],
+ 106:['三年的风雪落在肩上，你再见到他们时，谁都没有先说自己吃过多少苦。','只是一个眼神，七怪就知道，队伍又回来了。'],
+ 136:['实验场的门关上时，编号十三没有回头。','他不是请求原谅，他只是第一次把自己的名字从编号里捡出来。'],
+ 184:['星使站在星命轮下，眼神第一次不像完成品。','当被制造出来的人开始犹豫，观星者的答案就已经裂开了。'],
+ 244:['陆观辰这个名字落下时，观星者像被某道旧伤击中。','原来最可怕的敌人，也曾经只是一个不愿接受失去的人。'],
+ 284:['星盘世界里的星辰一颗颗坠落，像无数被安排好的命运终于失效。','你站在崩塌中心，听见自己的名字盖过神性的低语。'],
+ 294:['新的大陆在晨光里铺开，海面像一页尚未写字的纸。','这一次，没有神替人落笔。']
+};
+function $(id){return document.getElementById(id)}
+function esc(s){return String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function clamp(n,a,b){return Math.max(a,Math.min(b,n))}
+function load(){try{return JSON.parse(localStorage.getItem(SAVE_KEY)||'null')}catch(e){return null}}
+function save(){localStorage.setItem(SAVE_KEY,JSON.stringify(state))}
+function clearSave(){if(confirm('确定重新开始？当前本地进度会被清除。')){localStorage.removeItem(SAVE_KEY);state=defaultState(false);renderHome()}}
+function defaultState(started){return {started,chapter:0,scene:0,awaitChoice:false,lastChoice:null,lastResult:'',reading:0,player:null,route:{courage:0,wisdom:0,bond:0,mercy:0,abyss:0,divinity:0,freedom:0},memory:{spark:0,wound:0,promise:0},echoes:[],history:[],bond:Object.fromEntries(allies.map(a=>[a,35])),flags:{}}}
+let state=load()||defaultState(false);let tab='story';
+function startNew(){const name=($('playerName')?.value||'').trim();state=defaultState(true);const egg=name==='辣椒油';state.player=makePlayer(name,egg);state.flags.egg=egg;state.echoes.push(egg?'觉醒石记住了这个过于离谱的名字。':'觉醒石记住了你第一次伸手的样子。');state.lastResult=egg?'隐藏开局触发。广场沉默了很久，最后还是有人没忍住笑出了声。':'故事开始。觉醒石亮起，你的名字第一次被命运听见。';save();setTab('story')}
+function makePlayer(name,egg){if(egg){return {name:'辣椒油',wuhun:'本体武魂：阴茎',quality:'先天残缺',background:'隐藏整蛊开局',personality:'嘴硬',fate:'损友彩蛋',level:1,maxHp:95,hp:95,maxSp:48,sp:48,skills:['第一魂技：我没破防','第二魂技：辣眼睛飞溅','第三魂技：先天残缺但不服']}}
+ const names=['林寒','顾星河','沈照夜','陆清风','叶知秋','楚沉舟','苏明岚','白临渊'];const wuhun=['沉锋剑','玄纹盾','疾风豹','冰灵花','星陨弓','幻瞳','龙纹剑','九玄宝塔','命运之书','灰烬火种','清灵水','暗影豹'];const quality=['普通','优秀','稀有','顶级','变异','神级'];const bg=['边境小村','铁匠之家','猎户之家','药师之家','学院杂役','战场遗孤','小宗门弟子','没落贵族','黑市流民','神秘血脉'];const pers=['坚韧','冷静','热血','谨慎','善良','孤僻','机敏','隐忍'];const fate=['无特殊','逆境成长','贵人相助','旧日因果','双魂之兆','天命异数'];const w=pick(wuhun);return {name:name||pick(names),wuhun:w,quality:pick(quality),background:pick(bg),personality:pick(pers),fate:pick(fate),level:1,maxHp:110,hp:110,maxSp:60,sp:60,skills:makeSkills(w)}}
+function makeSkills(w){if(/剑|枪|弓/.test(w))return ['第一魂技：破风斩','第二魂技：断影突','第三魂技：锋芒归一'];if(/塔|琴|灯|树|水/.test(w))return ['第一魂技：魂光回响','第二魂技：七息生辉','第三魂技：共鸣守护'];if(/瞳|钟|书/.test(w))return ['第一魂技：精神凝视','第二魂技：命轨偏移','第三魂技：心镜镇魂'];return ['第一魂技：魂力爆发','第二魂技：缠身压制','第三魂技：武魂共鸣']}
+function current(){return CHAPTERS[state.chapter]||null}
+function volume(ch){return VOLUMES[ch.volume]}
+function progress(){return Math.min(100,Math.round((state.chapter/CHAPTERS.length)*100))}
+function dominant(){return Object.entries(state.route).sort((a,b)=>b[1]-a[1])[0]?.[0]||'bond'}
+function arc(ch){if(ch.volume<2)return 'origin';if(ch.volume<5)return 'academy';if(ch.volume<10)return 'tournament';if(ch.volume<14)return 'road';if(ch.volume<19)return 'abyss';if(ch.volume<24)return 'divine';if(ch.volume<28)return 'war';return 'finale'}
+function motif(ch){const t=ch.title;if(/战|冲突|考核|压力|决战|总攻|最终|军团|污染|承载者|挑战|斗魂|雷霆|神风/.test(t))return '冲突';if(/试炼|理论|档案|真相|规则|计划|神谕|审判/.test(t))return '真相';if(/重聚|约定|羁绊|队友|七怪|守夜|短别/.test(t))return '羁绊';if(/深渊|实验|逆星|编号|星会|星纹/.test(t))return '深渊';if(/神性|神殿|神谕|星盘|神/.test(t))return '神性';return '抉择'}
+function isBattle(ch){return motif(ch)==='冲突'||[7,15,22,29,34,44,52,58,66,77,86,107,117,124,132,142,154,164,174,184,194,205,214,224,244,254,264,274,284,290,291].includes(ch.no)}
+function allyFor(ch){return allies[(ch.no+ch.volume+(state.route.bond||0))%allies.length]}
+function routeLine(){const k=dominant();const lines={courage:'你做决定时越来越少后退，连武魂的光都带着锋利的边。',wisdom:'你学会把情绪藏到最后一刻，先让局势替你说话。',bond:'你总会先看一眼身边的人，确认他们仍在你的影子里。',mercy:'你仍愿意给某些人一次回头的机会，哪怕这会让道路更难。',abyss:'黑暗越深，你越能听见那些被埋住的声音。',divinity:'掌心偶尔会发热，像有某种高处的东西想借你的手醒来。',freedom:'你开始厌恶所有替你写好的答案，哪怕它们看起来很正确。'};return lines[k]||lines.bond}
+function epigraph(ch){const a=arc(ch);const table={origin:['少年第一次站到命运面前时，往往还不知道那是命运。','所有远行，都从一次不被理解的觉醒开始。'],academy:['怪物之所以是怪物，是因为他们连孤独都不肯按常理生长。','同伴不是天生可信，是一次次把背后交出去以后才可信。'],tournament:['赛场上没有永远的掌声，只有下一场更重的目光。','胜利会把少年推到光里，也会把弱点暴露给黑暗。'],road:['重逢从来不是回到过去，而是带着伤重新站到彼此身边。','三年的风会改变脸，却改变不了曾经并肩的方向。'],abyss:['深渊不是地名，是有人被世界丢下以后留下的回声。','当敌人也有伤口，刀就不再只负责劈下去。'],divine:['神性如果夺走人的名字，就不配被称作光。','被神注视不是荣耀，有时只是另一种牢笼。'],war:['战争会把所有选择都逼成答案，也会把所有答案逼出代价。','守住人，比赢下战场更难。'],finale:['命运写好结局，是为了等一个人把它撕掉。','怪物成神，不是飞到天上，而是把神拉回人间。']};return pick(table[a])}
+function eventTexture(ch){const v=volume(ch),t=ch.title,m=motif(ch);let p=[];if(chapterHooks[ch.no])p.push(...chapterHooks[ch.no]);
+ if(arc(ch)==='origin')p.push(`青石村的晨雾还没散，${v.figure}的声音穿过人群，落在你耳边时带着一种粗粝的真实。`, `你能听见自己袖口摩擦的声音，也能听见旁人低低议论你的${state.player.wuhun}。`);
+ if(arc(ch)==='academy')p.push(`史莱克学院并不体面，木门歪斜，草地也坑坑洼洼，可这里每个人的眼神都像没有被磨平的刀。`, `${v.figure}没有给你们太多安慰，只把规则摊开：想留下，就证明自己配得上怪物这个名字。`);
+ if(arc(ch)==='tournament')p.push(`看台上的喧嚣压下来，像一场由万人呼吸组成的暴雨。`, `对手的战袍在魂光里亮起，你终于意识到，天才从来不是史莱克独有的称呼。`);
+ if(arc(ch)==='road')p.push(`远行的路让人沉默。每一座城都有新的传闻，每一封信都像从过去伸来的手。`, `你想起分开前的约定，才发现成长并不总是变强，有时只是学会独自撑过夜晚。`);
+ if(arc(ch)==='abyss')p.push(`深渊的灯光冷得不像给活人准备，墙上的倒悬星纹像一只只闭不上的眼。`, `档案里那些被划掉的名字让人喘不过气，敌我两个字在这里忽然变得不够用。`);
+ if(arc(ch)==='divine')p.push(`金色纹路在空气里缓缓浮现，像某种过于遥远的意志把手伸进人间。`, `你听见低语声说，成为容器也许能拯救很多人。可你更想问，被拯救的人还算不算自己。`);
+ if(arc(ch)==='war')p.push(`战报一封接一封送来，地图上的红线不断延长，仿佛大陆本身正在裂开。`, `每个人都在奔赴自己的战场，没有谁还拥有只为自己害怕的资格。`);
+ if(arc(ch)==='finale')p.push(`星盘世界没有真正的地面，你每踏出一步，都像踩在某个本该发生的未来上。`, `观星者的声音从四面八方传来，他不再像敌人，更像一段拒绝结束的悲剧。`);
+ if(m==='冲突')p.push(`魂力先于言语爆开，空气被压得发紧，连呼吸都带着铁锈味。`); if(m==='真相')p.push(`真相没有立刻出现，它被藏在一句停顿、一个眼神和一份被撕去页脚的档案里。`); if(m==='羁绊')p.push(`伙伴的脚步声在你身后停住，那一瞬间，你知道自己不是一个人走到这里。`); return p}
+function stageParagraphs(ch,scene){const v=volume(ch),p=state.player,a=allyFor(ch),tex=eventTexture(ch),m=motif(ch),r=dominant(),last=state.echoes[0]||'';
+ if(scene===0)return [`“${epigraph(ch)}”`,`${v.image}。卷《${v.title}》的气息从${v.area}铺开，像一页被风翻起的书。`,`${ch.title}这几个字落下时，${p.wuhun}在你体内轻轻一震。你知道这一章不会只是经过，它会在你身上留下新的痕迹。`,last?`上一章的余音还没有散去：${last}`:`你把手按在胸口，听见魂力像暗流一样从经脉里流过。`];
+ if(scene===1)return [`${tex[0]||v.mood}。`,`${tex[1]||v.pressure}。`,`${v.figure}的出现让局势有了重量。不是所有话都需要说出口，有些压力站在那里就足够了。`,routeLine()];
+ if(scene===2)return [`事件真正压到面前时，你才发现${ch.title}并不是地图上的一个节点，而是一道必须跨过去的门。`,`${tex[2]||'四周的魂力悄然改变，像有人在暗处拨动了看不见的弦。'}`,isBattle(ch)?`这是会爆发冲突的一章。魂技、阵型、同伴的位置，都会在下一刻变得重要。`:`这不是单纯的战斗。你需要判断谁在说真话，谁把沉默当成了最后的盾。`,state.memory.wound>3?`你曾在深处见过太多伤口，所以此刻没有急着把任何人判成怪物。`:`你让自己慢下来，至少在做选择前，看清这件事真正伤到的是谁。`];
+ if(scene===3)return [`${a}站到你身侧。${allyRoles[allies.indexOf(a)]}位的魂力波动并不喧哗，却稳定得让人安心。`,dialogueText(ch,a),`队伍里的气氛因此改变。有人握紧武器，有人低声确认阵型，也有人只是抬头看了看你。`,state.memory.promise>3?`你们之间已经有过太多次无需解释的默契，所以这一刻没有人催促你。`:`这支队伍还在学着相信你的判断，而你也在学着承担他们的信任。`];
+ if(scene===4)return [`选择临近时，世界反而安静下来。`,`${v.pressure}。这句话不再只是背景，它正落在你肩上。`,`你可以选择更锋利，也可以选择更冷静；可以把伙伴拉近，也可以把目光投向更深处。`,`正史会继续向前，但从这一刻开始，故事会记住你的态度。`];
+ if(scene===5)return [choiceAfter(state.lastChoice||r,ch),`这个决定没有立刻改变世界，却改变了你站在世界面前的姿势。`,echoForeshadow(state.lastChoice||r,ch),`你把这份答案收进心里，继续往下一页走。`];
+ return [`本章的风声慢慢落下，${ch.title}留下的余温仍在指尖。`,closingLine(ch),`你的路线痕迹变得更清晰：${routeNames[dominant()]}正在成为别人理解你的方式。`,isBattle(ch)?`如果这是战斗，它带来的不只是胜负，还有新的伤、经验和配合。`:`如果这是沉默，它带来的不只是答案，还有下一次必须面对的疑问。`];}
+function dialogueText(ch,a){const role=allyRoles[allies.indexOf(a)]||'伙伴';if(motif(ch)==='深渊')return `${a}压低声音：“如果他们只是敌人，我不会犹豫。可如果他们也是被推下去的人，我们至少要看清是谁在推。”`;if(motif(ch)==='神性')return `${a}看着你掌心的光：“神性听起来很高，可我只想确认，你还会不会用自己的声音回答我们。”`;if(isBattle(ch))return `${a}活动了一下手腕：“我会守住我的位置。你只管做决定，剩下的交给我们。”`;if(role==='辅助')return `${a}轻声说：“别把所有压力都揽过去。能救你的，不只有胜利，还有我们。”`;if(role==='精神')return `${a}望向远处：“他的眼神在躲避某个名字。你要是想赢，不妨先找到那个名字。”`;if(role==='敏攻')return `${a}笑了一下：“你开口之前，我不会动。你开口之后，我会是第一个到的人。”`;return `${a}说道：“我不知道哪条路一定对。但你选了，我们就会跟上。”`}
+function choiceOptions(ch){if(ch.volume>=28)return [['freedom','打破安排','不做星盘里的容器。','终局更偏向自由核心与新的星空'],['divinity','承受神性','把神性留在人能理解的范围内。','终局更偏向归名之光'],['bond','相信七怪','让伙伴的声音盖过神的低语。','终局更偏向怪物成神'],['mercy','叫出陆观辰的名字','给观星者最后一次回头的可能。','终局更偏向陆观辰的星']];
+ if(ch.volume>=23)return [['divinity','直面神性','看清神殿真正想要什么。','神性路线提高'],['wisdom','审问真相','先拆开神谕和档案。','谋略路线提高'],['mercy','寻找旧名','从陆观辰过去寻找破局点。','救赎路线提高'],['freedom','拒绝容器','不接受任何替你安排的答案。','自由路线提高']];
+ if(ch.volume>=14)return [['abyss','深入深渊','亲眼确认实验场背后的真相。','深渊路线提高'],['mercy','救下实验体','把人从编号里拉回来。','救赎路线提高'],['wisdom','保留证据','让真相成为反击的刀。','谋略路线提高'],['bond','优先护队友','七怪不能再失去任何一个人。','羁绊提高']];
+ if(ch.volume>=5)return [['courage','正面突破','以强攻压开局面。','大赛战斗更热血'],['wisdom','冷静布阵','先拆掉对方战术。','战术阅读更强'],['bond','保护队友','让队伍完整比一时胜负更重要。','组合技与队友信任提高'],['mercy','尊重对手','赢也不把对方踩进尘里。','对手后续评价更高']];
+ return [['courage','迎上去','不让退缩成为习惯。','早期强攻倾向提高'],['wisdom','先观察','把嘲笑和压力都看成情报。','早期谋略倾向提高'],['bond','护住身边人','先确认伙伴不会受伤。','早期羁绊提高'],['mercy','留一线','不把别人的恶意变成自己的恶意。','救赎倾向萌芽']];}
+function choiceAfter(k,ch){const base={courage:'你选择迎上去。魂力在经脉里冲开，像一把被磨了很久的刃。无论对手是谁，你都先让他明白：你不是会被吓退的人。',wisdom:'你没有急着动手，而是把每一个细节都放进脑海：脚步、呼吸、魂力波动、旁人的眼神。等你真正出手时，局势已经先输了一半给你的冷静。',bond:'你把目光投向伙伴。胜利当然重要，可如果胜利的代价是让同伴独自承受，你宁愿把脚步放慢，也要把他们带在身边。',mercy:'你没有把路堵死。对方也许站在敌人的位置，也许做过无法轻易原谅的事，可你仍愿意在最后一刻问一句：你还想不想回头？',abyss:'你选择走进更深的地方。黑暗不会因为被绕开就消失，只有亲眼看见它怎样吞人，才知道该怎样把人拉回来。',divinity:'你抬头看向那股近乎神明的力量，没有跪下，也没有逃开。你要弄清楚，所谓神性究竟是在拯救人，还是在替人夺走选择。',freedom:'你拒绝接受安排。无论命运、神殿还是星盘，都不能替你决定你该成为什么。你向前一步，把自己的名字重新握回手里。'};return base[k]||base.bond}
+function echoForeshadow(k,ch){if(ch.volume<5)return '这一刻还很小，却会在很多年后成为你回忆里的第一道火。';if(ch.volume<14)return '队友们记住了你的做法，下一次配合会因此多一分默契。';if(ch.volume<23)return '深渊里的某个人也许还不知道，你的选择正在改变他的结局。';return '星盘深处有一道光轻轻偏移，仿佛某个结局因此换了方向。'}
+function closingLine(ch){const m=motif(ch);if(m==='冲突')return '尘埃落下之后，最先传来的不是欢呼，而是队友确认彼此还站着的声音。';if(m==='真相')return '答案被写进札记，但你知道，真正危险的从来不是答案，而是有人不想让答案出现。';if(m==='羁绊')return '有人拍了拍你的肩，没有多说。可那一下比任何誓言都更踏实。';if(m==='深渊')return '黑暗没有退去，只是第一次在你面前显出了轮廓。';if(m==='神性')return '金色光芒慢慢暗下去，你却觉得它并没有离开，只是藏进了更深的地方。';return '下一章还在等你，而你已经不是走进这一章前的你。'}
+function choiceHint(ch){if(ch.volume>=28)return '最终结局、陆观辰是否回头、神性归宿。';if(ch.volume>=23)return '神殿试炼、武魂殿态度、观星者真相。';if(ch.volume>=14)return '深渊三路、编号十三、逆星七子的去向。';if(ch.volume>=5)return '大赛战术、队友信任、黄金决战的文本氛围。';return '主角性格底色、七怪初期羁绊。'}
+function pulse(ch){const v=volume(ch);return `<div class="pulse"><div class="readerLine"><b>本章线索</b><span class="mini">${esc(motif(ch))}</span><span class="mini">${isBattle(ch)?'冲突将起':'剧情推进'}</span></div><div class="consequence"><div class="impact">卷内主题：${esc(v.theme)}</div><div class="impact">选择会影响：${esc(choiceHint(ch))}</div></div></div>`}
+function renderHome(){document.body.classList.remove('ingame');$('nav').style.display='none';$('root').className='';$('root').innerHTML=`<div class="home"><div class="hero"><h1 class="logo">斗罗大陆文字版 RPG</h1><div class="sub">像读小说一样推进主线，在关键处选择自己的道路。</div><div class="card"><div class="sceneTitle">开始之前</div><p class="small">输入角色名，或留空随机生成。故事会从卷一《武魂初醒》开始，沿三十卷正史推进。</p><input id="playerName" placeholder="角色名，可留空" /></div><div class="row"><button class="primary" onclick="startNew()">开始故事</button><button onclick="const s=load(); if(s&&s.started){state=s;setTab('story')}else alert('还没有故事进度')">继续阅读</button><button class="ghost" onclick="clearSave()">重新开始</button></div></div></div>`}
+function header(){const p=state.player;return `<div class="topbar"><div class="status"><div><div class="name">${esc(p.name)}｜${esc(p.wuhun)}</div><div class="meta">${esc(p.quality)}｜${esc(p.background)}｜${esc(p.personality)}｜进度 ${progress()}%</div><div class="bars"><div class="bar"><i style="width:${100*p.hp/p.maxHp}%"></i></div><div class="bar sp"><i style="width:${100*p.sp/p.maxSp}%"></i></div></div></div><button class="ghost" onclick="save();alert('已保存')">存档</button></div></div>`}
+function renderGame(){if(!state.started){renderHome();return}document.body.classList.add('ingame');$('nav').style.display='flex';document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));const nb=$('nav-'+tab);if(nb)nb.classList.add('active');$('root').className='app';let html=header();if(tab==='story')html+=storyView();if(tab==='role')html+=roleView();if(tab==='bond')html+=bondView();if(tab==='note')html+=noteView();$('root').innerHTML=html;window.scrollTo({top:0,behavior:'smooth'})}
+function storyView(){const ch=current();if(!ch)return endingView();const paras=stageParagraphs(ch,state.scene);const choices=state.awaitChoice?choiceOptions(ch):[];const sceneLabel=SCENE_LABELS[state.scene]||'正文';return `<section class="card"><div class="chapterTitle">卷${ch.volume+1}《${esc(ch.volTitle)}》<small>第${ch.no}章：${esc(ch.title)}</small></div><div class="chapterMeta"><span class="mini">${esc(ch.area)}</span><span class="mini">${esc(sceneLabel)}</span><span class="mini">进度 ${progress()}%</span></div><div class="progressLine"><i style="width:${progress()}%"></i></div><div class="goal">当前目标：${isBattle(ch)?'走过本章冲突，在战斗、对话与选择里留下自己的答案。':'读完本章事件，在关键处决定主角的态度。'}</div>${state.lastResult?`<div class="result">${esc(state.lastResult)}</div>`:''}${pulse(ch)}<div class="sceneTitle">${esc(sceneLabel)}</div>${state.scene===0?`<div class="epigraph">${esc(paras[0])}</div><div class="novel">${paras.slice(1).map((p,i)=>`<p class="${i===0?'key':''}">${esc(p)}</p>`).join('')}</div>`:`<div class="novel">${paras.map((p,i)=>`<p class="${i===0?'key':(state.scene===5&&i===1?'whisper':'')}">${esc(p)}</p>`).join('')}</div>`}${state.scene===3?`<div class="dialogue">${esc(dialogueText(ch,allyFor(ch)))}</div>`:''}${choices.length?`<div class="choiceList">${choices.map(([k,t,d,impact])=>`<button class="choice" onclick="choose('${k}')"><b>${esc(t)}</b><br><span class="small">${esc(d)}</span><span class="impactText">影响：${esc(impact||routeDesc[k])}</span></button>`).join('')}</div>`:`<button class="primary" style="width:100%;margin-top:12px" onclick="continueStory()">继续</button>`}</section><div class="footerSpace"></div>`}
+function continueStory(){const ch=current();state.lastResult='';state.reading++;if(!ch)return renderGame();if(state.scene<4){state.scene++}else if(state.scene===4){state.awaitChoice=true}else if(state.scene<6){state.scene++}else{finishChapter()}save();renderGame()}
+function choose(k){const ch=current();state.lastChoice=k;state.route[k]=(state.route[k]||0)+1;state.awaitChoice=false;state.scene=5;if(k==='courage'||k==='freedom')state.memory.spark++;if(k==='abyss'||k==='divinity')state.memory.wound++;if(k==='bond'||k==='mercy')state.memory.promise++;const a=allyFor(ch);state.bond[a]=clamp((state.bond[a]||35)+(k==='bond'?4:1),0,100);const echo=`第${ch.no}章，你选择了${routeNames[k]}。${routeDesc[k]}。`;state.echoes.unshift(echo);state.echoes=state.echoes.slice(0,8);state.lastResult=`你选择了「${routeNames[k]}」。${routeDesc[k]}。`;state.history.unshift(`第${ch.no}章《${ch.title}》：${routeNames[k]}`);state.history=state.history.slice(0,32);save();renderGame()}
+function finishChapter(){const ch=current();state.chapter++;state.scene=0;state.awaitChoice=false;state.lastChoice=null;state.lastResult=`第${ch.no}章《${ch.title}》结束。`;if(state.chapter%8===0){state.player.level++;state.player.maxHp+=8;state.player.maxSp+=4;state.player.hp=state.player.maxHp;state.player.sp=state.player.maxSp;state.lastResult+=` 你的魂力在旅途中更加稳定，等级提升。`}save();renderGame()}
+function setTab(t){tab=t;renderGame()}
+function roleView(){const p=state.player;return `<section class="card"><div class="chapterTitle">角色</div><div class="statGrid"><div class="stat"><b>姓名</b><br>${esc(p.name)}</div><div class="stat"><b>武魂</b><br>${esc(p.wuhun)}</div><div class="stat"><b>品质</b><br>${esc(p.quality)}</div><div class="stat"><b>出身</b><br>${esc(p.background)}</div><div class="stat"><b>性格</b><br>${esc(p.personality)}</div><div class="stat"><b>命格</b><br>${esc(p.fate)}</div></div></section><section class="card"><div class="sceneTitle">路线倾向</div>${Object.entries(state.route).map(([k,v])=>`<div style="margin:8px 0"><span class="tag">${routeNames[k]} ${v}</span><div class="routeMeter"><i style="width:${Math.min(100,v*12)}%"></i></div></div>`).join('')}<div class="sep"></div><div class="sceneTitle">魂技</div>${p.skills.map(s=>`<span class="tag">${esc(s)}</span>`).join('')}</section>`}
+function bondView(){return `<section class="card"><div class="chapterTitle">七怪羁绊</div><p class="small">羁绊不是单独刷出来的数值，而是你在每章选择里慢慢留下的痕迹。</p><div class="statGrid">${allies.map((a,i)=>`<div class="stat"><b>${a}</b><br>${allyRoles[i]}｜信任 ${clamp(state.bond[a]||0,0,100)}</div>`).join('')}</div></section><section class="card"><div class="sceneTitle">最近的回应</div>${(state.echoes||[]).slice(0,5).map(e=>`<p class="small">${esc(e)}</p>`).join('')||'<p class="small">还没有留下回应。</p>'}</section>`}
+function noteView(){const ch=current();const mem=state.memory||{spark:0,wound:0,promise:0};return `<section class="card"><div class="chapterTitle">故事札记</div><ul class="cleanList"><li>当前进度：${ch?`卷${ch.volume+1}《${ch.volTitle}》 第${ch.no}章《${ch.title}》`:'终章之后'}</li><li>当前区域：${ch?ch.area:'新的大陆'}</li><li>主导路线：${routeNames[dominant()]}</li><li>已阅读段落：${state.reading}</li></ul></section><section class="card"><div class="sceneTitle">主角留下的痕迹</div><span class="tag">锋芒 ${mem.spark||0}</span><span class="tag">伤痕 ${mem.wound||0}</span><span class="tag">约定 ${mem.promise||0}</span><div class="sep"></div><div class="sceneTitle">最近选择</div>${state.history.length?state.history.map(h=>`<span class="tag">${esc(h)}</span>`).join(''):'<p class="small">还没有选择记录。</p>'}<div class="sep"></div><div class="row"><button onclick="save();alert('已保存')">保存故事</button><button class="ghost" onclick="clearSave()">重新开始</button></div></section>`}
+function endingView(){const r=dominant();const endings={bond:'怪物成神：你们没有把神性推上高台，而是把它带回人间。七怪仍是七怪，只是终于有能力守住更多人的明天。',freedom:'自由核心：你拒绝成为任何容器。星盘崩塌后，所有被写好的命运都重新变成选择。',mercy:'陆观辰的星：你叫出了观星者真正的名字。陆观辰没有被原谅，但他终于停下了继续伤害世界的手。',divinity:'归名之光：你承受神性，却不向神性低头。神不再无名，人也不再只是容器。',courage:'破局者：你用最直接的方式撕开终局，让所有安排都在你的武魂前碎裂。',wisdom:'新的星空：你没有选择唯一答案，而是为大陆保留了继续追问的权利。',abyss:'深渊回声：你从最深的地方带回那些被抹去的人，让深渊第一次有了回声。'};return `<section class="card"><div class="chapterTitle">终章</div><div class="novel"><p>${endings[r]||endings.bond}</p><p>新的大陆在晨光里展开。海风吹过时，你忽然想起青石村的第一天。那时你还不知道，自己会走这么远。</p><p>故事没有真正结束。只是从这一页开始，它不再只属于命运，也属于你。</p></div><button class="primary" style="width:100%" onclick="clearSave()">重新开始</button></section>`}
+if(state.started)renderGame();else renderHome();
+</script>
 </body>
 </html>
